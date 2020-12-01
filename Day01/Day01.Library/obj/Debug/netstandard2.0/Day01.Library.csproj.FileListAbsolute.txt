@@ -1,0 +1,11 @@
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\bin\Debug\netstandard2.0\InputReader.cs
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\bin\Debug\netstandard2.0\Day01.Library.deps.json
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\bin\Debug\netstandard2.0\Day01.Library.dll
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\bin\Debug\netstandard2.0\Day01.Library.pdb
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\obj\Debug\netstandard2.0\Day01.Library.csprojAssemblyReference.cache
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\obj\Debug\netstandard2.0\Day01.Library.AssemblyInfoInputs.cache
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\obj\Debug\netstandard2.0\Day01.Library.AssemblyInfo.cs
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\obj\Debug\netstandard2.0\Day01.Library.csproj.CoreCompileInputs.cache
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\obj\Debug\netstandard2.0\Day01.Library.dll
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\obj\Debug\netstandard2.0\Day01.Library.pdb
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01.Library\bin\Debug\netstandard2.0\input - Copy.txt
