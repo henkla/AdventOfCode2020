@@ -5,3 +5,4 @@
 
 ## Collaborators
 * [Padowi](http://github.com/padowi/adventofcode2020/)
+- [Poodlebag](https://github.com/Poodlepaag/AdventOfCode_2020)
