@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CyvPfKTAZAcgteH3gECDJ90zQNIGnGhHstxQ5UWhXWngFNdaaszaXkUKfRL2fYBLBmap4L300u871+fTRQcN8Q==",
+  "dgSpecHash": "xc7+eCHJBT1baXOZ5pa9YczHjHNrXHeAdel4re2bo+qCnxS3rUo/01Xd/xRfa77Z+oIQBPB+Cur52YWB9eRYng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\Day01.Library.csproj",
+  "projectFilePath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HenrikLarsson\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\HenrikLarsson\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

@@ -2,28 +2,28 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Day01.Library/1.0.0": {
+      "AdventOfCode2020..Library/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "compile": {
-          "bin/placeholder/Day01.Library.dll": {}
+          "bin/placeholder/AdventOfCode2020..Library.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Day01.Library.dll": {}
+          "bin/placeholder/AdventOfCode2020..Library.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Day01.Library/1.0.0": {
+    "AdventOfCode2020..Library/1.0.0": {
       "type": "project",
-      "path": "../Day01.Library/Day01.Library.csproj",
-      "msbuildProject": "../Day01.Library/Day01.Library.csproj"
+      "path": "../Day01.Library/AdventOfCode2020..Library.csproj",
+      "msbuildProject": "../Day01.Library/AdventOfCode2020..Library.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Day01.Library >= 1.0.0"
+      "AdventOfCode2020..Library >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -53,8 +53,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\Day01.Library.csproj": {
-              "projectPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\Day01.Library.csproj"
+            "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj": {
+              "projectPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj"
             }
           }
         }

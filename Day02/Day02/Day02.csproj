@@ -5,4 +5,18 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="input.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Day01\Day01.Library\AdventOfCode2020..Library.csproj" />
+  </ItemGroup>
+
 </Project>

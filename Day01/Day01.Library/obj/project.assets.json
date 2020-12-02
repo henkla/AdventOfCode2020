@@ -185,9 +185,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\Day01.Library.csproj",
-      "projectName": "Day01.Library",
-      "projectPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\Day01.Library.csproj",
+      "projectUniqueName": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj",
+      "projectName": "AdventOfCode2020..Library",
+      "projectPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj",
       "packagesPath": "C:\\Users\\HenrikLarsson\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\obj\\",
       "projectStyle": "PackageReference",

@@ -1,12 +1,9 @@
-C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\InputReader.cs
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\Day01.exe
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\Day01.deps.json
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\Day01.runtimeconfig.json
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\Day01.runtimeconfig.dev.json
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\Day01.dll
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\Day01.pdb
-C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\Day01.Library.dll
-C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\Day01.Library.pdb
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\netcoreapp3.1\Day01.csprojAssemblyReference.cache
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\netcoreapp3.1\Day01.AssemblyInfoInputs.cache
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\netcoreapp3.1\Day01.AssemblyInfo.cs
@@ -15,4 +12,7 @@ C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\n
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\netcoreapp3.1\Day01.dll
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\netcoreapp3.1\Day01.pdb
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\netcoreapp3.1\Day01.genruntimeconfig.cache
-C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\input - Copy.txt
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\InputHelper.cs
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\input.txt
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\AdventOfCode2020..Library.dll
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\AdventOfCode2020..Library.pdb

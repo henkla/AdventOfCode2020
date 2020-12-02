@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day01", "Day01\Day01\Day01.csproj", "{63439062-4751-484A-ABB2-779706D98B86}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day01.Library", "Day01\Day01.Library\Day01.Library.csproj", "{76F03E68-D864-4279-94B3-D3C488806D16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2020..Library", "Day01\Day01.Library\AdventOfCode2020..Library.csproj", "{76F03E68-D864-4279-94B3-D3C488806D16}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day02", "Day02\Day02\Day02.csproj", "{96831329-10ED-4EB6-9089-7DEFC34F4664}"
 EndProject

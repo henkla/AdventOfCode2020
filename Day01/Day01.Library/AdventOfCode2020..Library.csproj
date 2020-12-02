@@ -1,18 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="input - Copy.txt" />
     <None Remove="input.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="input - Copy.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="InputReader.cs">
+    <Compile Update="InputHelper.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>

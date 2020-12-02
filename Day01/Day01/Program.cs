@@ -13,12 +13,14 @@ namespace Day01
         static void Main(string[] args)
         {
             // arrange
-            var inputReader = new InputReader();
-            var actualSortedInput = inputReader.GetInputCollection("input - Copy.txt", true);
+            var inputReader = new InputHelper();
+            var actualInput = inputReader.GetInput("input.txt");
+            var sortedInput = inputReader.SortCollection(actualInput, SortBy.Ascending);
+            var convertedInput = inputReader.ConvertToIntCollection(sortedInput);
 
             // act
-            Part1(actualSortedInput);
-            Part2(actualSortedInput);
+            Part1(convertedInput);
+            Part2(convertedInput);
         }
 
         private static void Part1(IEnumerable<int> actualSortedInput)
@@ -28,12 +30,11 @@ namespace Day01
             // loop through every number
             foreach (var number in actualSortedInput)
             {
-                Console.WriteLine($"Checking {number}...");
-
                 var desiredPair = _target - number;
                 if (actualSortedInput.Contains(desiredPair))
                 {
                     Console.WriteLine($"The pair than goes with {number} is {desiredPair} and the product of those are {number * desiredPair}!");
+                    Console.ReadKey();
                     return;
                 }
             }
@@ -57,14 +58,13 @@ namespace Day01
             
             foreach (var num1 in actualSortedInput)
             {
-                Console.WriteLine($"Checking {num1}...");
                 foreach (var num2 in actualSortedInput)
                 {
-                    Console.WriteLine($"... against {num2}...");
                     var desiredPair = _target - num1 - num2;
                     if (actualSortedInput.Contains(desiredPair))
                     {
-                        Console.WriteLine($"The pair than goes with {num1} and {num2} is {desiredPair} and the product of those are {num1 * num2 * desiredPair}!");
+                        Console.WriteLine($"The pair that goes with {num1} and {num2} is {desiredPair} and the product of those are {num1 * num2 * desiredPair}!");
+                        Console.ReadKey();
                         return;
                     }
                 }
