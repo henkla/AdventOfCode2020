@@ -12,10 +12,12 @@ namespace Day01
 
         static void Main(string[] args)
         {
+            // arrange
             var inputReader = new InputReader();
-            // order input by ascending
             var actualSortedInput = inputReader.GetInputCollection("input - Copy.txt", true);
-            //Part1(actualSortedInput);
+
+            // act
+            Part1(actualSortedInput);
             Part2(actualSortedInput);
         }
 
@@ -32,9 +34,11 @@ namespace Day01
                 if (actualSortedInput.Contains(desiredPair))
                 {
                     Console.WriteLine($"The pair than goes with {number} is {desiredPair} and the product of those are {number * desiredPair}!");
-                    break;
+                    return;
                 }
             }
+
+            throw new ApplicationException("There are no numbers to match given criteria!");
         }
 
         /*
@@ -53,13 +57,15 @@ namespace Day01
             
             foreach (var num1 in actualSortedInput)
             {
+                Console.WriteLine($"Checking {num1}...");
                 foreach (var num2 in actualSortedInput)
                 {
+                    Console.WriteLine($"... against {num2}...");
                     var desiredPair = _target - num1 - num2;
                     if (actualSortedInput.Contains(desiredPair))
                     {
                         Console.WriteLine($"The pair than goes with {num1} and {num2} is {desiredPair} and the product of those are {num1 * num2 * desiredPair}!");
-                        break;
+                        return;
                     }
                 }
             }
