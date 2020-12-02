@@ -4,14 +4,14 @@
     "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01\\Day01.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj": {
+    "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\AdventOfCode2020.Library\\AdventOfCode2020.Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj",
-        "projectName": "AdventOfCode2020..Library",
-        "projectPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj",
+        "projectUniqueName": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\AdventOfCode2020.Library\\AdventOfCode2020.Library.csproj",
+        "projectName": "AdventOfCode2020.Library",
+        "projectPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\AdventOfCode2020.Library\\AdventOfCode2020.Library.csproj",
         "packagesPath": "C:\\Users\\HenrikLarsson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\obj\\",
+        "outputPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\AdventOfCode2020.Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HenrikLarsson\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -85,8 +85,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj": {
-                "projectPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\Day01\\Day01.Library\\AdventOfCode2020..Library.csproj"
+              "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\AdventOfCode2020.Library\\AdventOfCode2020.Library.csproj": {
+                "projectPath": "C:\\Users\\HenrikLarsson\\Utveckling\\Repos\\AdventOfCode2020\\AdventOfCode2020.Library\\AdventOfCode2020.Library.csproj"
               }
             }
           }

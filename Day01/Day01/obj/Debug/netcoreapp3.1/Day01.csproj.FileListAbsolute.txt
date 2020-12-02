@@ -14,5 +14,5 @@ C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\n
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\obj\Debug\netcoreapp3.1\Day01.genruntimeconfig.cache
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\InputHelper.cs
 C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\input.txt
-C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\AdventOfCode2020..Library.dll
-C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\AdventOfCode2020..Library.pdb
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\AdventOfCode2020.Library.dll
+C:\Users\HenrikLarsson\Utveckling\Repos\AdventOfCode2020\Day01\Day01\bin\Debug\netcoreapp3.1\AdventOfCode2020.Library.pdb
