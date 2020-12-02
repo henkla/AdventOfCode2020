@@ -1,9 +1,8 @@
-﻿using Day01.Library;
+﻿using AdventOfCode2020.Library;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Day02
 {

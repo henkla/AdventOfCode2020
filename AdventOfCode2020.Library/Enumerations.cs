@@ -1,4 +1,4 @@
-﻿namespace Day01.Library
+﻿namespace AdventOfCode2020.Library
 {
     public enum SortBy
     {

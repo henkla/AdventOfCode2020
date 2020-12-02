@@ -1,10 +1,9 @@
-﻿using Day01.Library;
+﻿using AdventOfCode2020.Library;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
-namespace Day01
+namespace AdventOfCode2020
 {
     class Program
     {
