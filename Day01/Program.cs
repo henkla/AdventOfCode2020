@@ -13,7 +13,7 @@ namespace AdventOfCode2020
         {
             // arrange
             var inputReader = new InputHelper();
-            var actualInput = inputReader.GetInput("input.txt");
+            var actualInput = inputReader.GetInputAsLines("input.txt");
             var sortedInput = inputReader.SortCollection(actualInput, SortBy.Ascending);
             var convertedInput = inputReader.ConvertToIntCollection(sortedInput);
 

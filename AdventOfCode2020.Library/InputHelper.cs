@@ -7,11 +7,27 @@ namespace AdventOfCode2020.Library
 {
     public class InputHelper
     {
-        public IEnumerable<string> GetInput(string inputPath)
+        public IEnumerable<string> GetInputAsLines(string inputPath)
         {
             try
             {
                 return File.ReadAllLines(inputPath).ToList();
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Fel: Filen kunde inte hittas. Kontrollera sökvägen: {inputPath}");
+                throw e;
+            }
+        }
+
+        public char[][] GetInputAsGrid(string inputPath)
+        {
+            try
+            {
+                //return File.ReadAllText(inputPath).ToList();
+                return File.ReadAllLines(inputPath)
+                   .Select(l => l.Select(i => i).ToArray())
+                   .ToArray();
             }
             catch (FileNotFoundException e)
             {

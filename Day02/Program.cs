@@ -45,7 +45,7 @@ namespace Day02
         {
             // arrange
             var inputHelper = new InputHelper();
-            var actualInput = inputHelper.GetInput("input.txt");
+            var actualInput = inputHelper.GetInputAsLines("input.txt");
 
             Part1(actualInput);
             Part2(actualInput);
