@@ -1,15 +1,11 @@
 ﻿using AdventOfCode2020.Library;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
 
 namespace Day03
 {
-    public enum Square
-    {
-        Open = 0,
-        Tree = 1
-    }
-
     class Program
     {
         /*
@@ -34,10 +30,8 @@ namespace Day03
             var inputHelper = new InputHelper();
             var input = inputHelper.GetInputAsGrid("input.txt");
 
-            // operate on input?
-
             Part1(input);
-            //Part2(input);
+            Part2(input);
         }
 
         /*
@@ -67,11 +61,73 @@ namespace Day03
         {
             Console.WriteLine("Part 1:\n");
 
-            var numberOfTrees = 0;
+            var numberOfTrees = TraverseTheMap(map, 3, 1);
+            Console.WriteLine($"There are {numberOfTrees} number of trees!");
 
-            // given conditions
-            var xTravel = 3;
-            var yTravel = 1;
+            Console.ReadKey();
+        }
+
+        /*
+        --- Part Two ---
+        Time to check the rest of the slopes - you need to minimize 
+        the probability of a sudden arboreal stop, after all.
+
+        Determine the number of trees you would encounter if, for each 
+        of the following slopes, you start at the top-left corner and 
+        traverse the map all the way to the bottom:
+
+        Right 1, down 1.
+        Right 3, down 1. (This is the slope you already checked.)
+        Right 5, down 1.
+        Right 7, down 1.
+        Right 1, down 2.
+        In the above example, these slopes would find 2, 7, 3, 4, and 
+        2 tree(s) respectively; multiplied together, these produce the 
+        answer 336.
+
+        What do you get if you multiply together the number of trees 
+        encountered on each of the listed slopes?
+         */
+        private static void Part2(char[][] map)
+        {
+            Console.WriteLine("Part 2:\n");
+
+            // store number of trees for each traversed slope
+            var totalNumberOfTrees = new List<long>();
+
+            // the given path to travel for each slope
+            var travelConditions = new List<int[]>
+            {
+                new int[] { 1, 1 },
+                new int[] { 3, 1 },
+                new int[] { 5, 1 },
+                new int[] { 7, 1 },
+                new int[] { 1, 2 },
+            };
+
+            // the number of trees for each traversed slope
+            foreach (var condition in travelConditions)
+            {
+                var currentNumberOfTrees = TraverseTheMap(map, condition[0], condition[1]);
+                Console.WriteLine($"For x={condition[0]} and y={condition[1]}, there are {currentNumberOfTrees} trees.");
+                totalNumberOfTrees.Add((long)currentNumberOfTrees);
+            }
+
+            // get the product of the total number of trees
+            long product = 1; // initial product must be set to 1
+            foreach (var numberOfTrees in totalNumberOfTrees)
+            {
+                product *= numberOfTrees;
+            }
+
+            Console.WriteLine($"The product of all the trees for each traversed slope are {product}.");
+            Console.ReadKey();
+        }
+
+        private static int TraverseTheMap(char[][] map, int xTravel, int yTravel)
+        {
+            // we start out with zero trees
+            var numberOfTrees = 0;
 
             // set starting position
             var xPosition = xTravel;
@@ -79,70 +135,33 @@ namespace Day03
 
             try
             {
+                // as long as we haven't reached the bottom of the map
                 while (yPosition < map.Length)
                 {
-                    // get terrain for current position
-                    var currentTerrain = map[yPosition][xPosition];
+                    // check if we have reached the boundaries in x-path
+                    if (xPosition >= map[yPosition - 1].Length)
+                    {
+                        xPosition -= map[yPosition].Length;
+                    }
 
                     // check the current terrain
-                    if (currentTerrain == '#')
+                    if (map[yPosition][xPosition] == '#')
                     {
                         // it's a tree, so add to the count
                         numberOfTrees++;
-
-                        // mark the type of terrain on map
-                        map[yPosition][xPosition] = 'X';
                     }
-                    else
-                    {
-                        // mark the type of terrain on map
-                        map[yPosition][xPosition] = 'O';
-                    }
-
+                    
                     // set next position
                     xPosition += xTravel;
                     yPosition += yTravel;
-
-                    // check if reaching boundaries in x-path
-                    if (xPosition >= map[yPosition - 1].Length)
-                    {
-                        xPosition -= map[xPosition].Length;
-                    }
                 }
-
-                Console.WriteLine($"There are {numberOfTrees} number of trees in the chosen path!");
             }
             catch (Exception)
             {
                 Console.WriteLine("You fool! Did you just walk outside the boundaries of the map?");
             }
-            finally
-            {
-                // just for the fun of it
-                PrintTraversedMap(map);
-            }
 
-            Console.ReadKey();
-        }
-
-        private static void PrintTraversedMap(char[][] map)
-        {
-            for (var y = 0; y < map.Length; y++)
-            {
-                for (var x = 0; x < map[y].Length; x++)
-                {
-                    Console.Write(map[y][x]);
-                }
-
-                Console.WriteLine();
-            }
-        }
-
-        private static void Part2(IEnumerable<string> input)
-        {
-            throw new NotImplementedException();
-            Console.WriteLine("Part 2:\n");
-            Console.ReadKey();
+            return numberOfTrees;
         }
     }
 }
