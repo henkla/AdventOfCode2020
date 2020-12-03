@@ -1,8 +1,6 @@
 ﻿using AdventOfCode2020.Library;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
 
 namespace Day03
 {
@@ -92,25 +90,25 @@ namespace Day03
         {
             Console.WriteLine("Part 2:\n");
 
+            // the given path to travel for each slope
+            var travelConditions = new List<(int XTravel,int YTravel)>
+            {
+                ( 1, 1 ),
+                ( 3, 1 ),
+                ( 5, 1 ),
+                ( 7, 1 ),
+                ( 1, 2 ),
+            };
+
             // store number of trees for each traversed slope
             var totalNumberOfTrees = new List<long>();
 
-            // the given path to travel for each slope
-            var travelConditions = new List<int[]>
-            {
-                new int[] { 1, 1 },
-                new int[] { 3, 1 },
-                new int[] { 5, 1 },
-                new int[] { 7, 1 },
-                new int[] { 1, 2 },
-            };
-
             // the number of trees for each traversed slope
-            foreach (var condition in travelConditions)
+            foreach (var (XTravel, YTravel) in travelConditions)
             {
-                var currentNumberOfTrees = TraverseTheMap(map, condition[0], condition[1]);
-                Console.WriteLine($"For x={condition[0]} and y={condition[1]}, there are {currentNumberOfTrees} trees.");
-                totalNumberOfTrees.Add((long)currentNumberOfTrees);
+                var currentNumberOfTrees = TraverseTheMap(map, XTravel, YTravel);
+                Console.WriteLine($"For x={XTravel} and y={YTravel}, there are {currentNumberOfTrees} trees.");
+                totalNumberOfTrees.Add(currentNumberOfTrees);
             }
 
             // get the product of the total number of trees
@@ -119,12 +117,12 @@ namespace Day03
             {
                 product *= numberOfTrees;
             }
-
+            
             Console.WriteLine($"The product of all the trees for each traversed slope are {product}.");
             Console.ReadKey();
         }
 
-        private static int TraverseTheMap(char[][] map, int xTravel, int yTravel)
+        private static long TraverseTheMap(char[][] map, int xTravel, int yTravel)
         {
             // we start out with zero trees
             var numberOfTrees = 0;
