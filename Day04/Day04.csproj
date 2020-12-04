@@ -6,17 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="input.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="example.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AdventOfCode2020.Library\AdventOfCode2020.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="example.txt" />
   </ItemGroup>
 
 </Project>
