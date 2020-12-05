@@ -199,13 +199,13 @@ namespace Day05
             // if my interpretation of the problem is correct,
             // this should be the id that is missing from the
             // sequence, and thus the id that is my own
-            var missingId = FindMissingIds(seatIds);
+            var missingId = FindMissingId(seatIds);
 
             Console.WriteLine($"Fort part 2, the missing id (that is mine) is {missingId}.");
             Console.ReadKey();
         }
 
-        public static int FindMissingIds(IEnumerable<int> source)
+        public static int FindMissingId(IEnumerable<int> source)
         {
             // we were told to discard the first and last rows. or rather,
             // we were told that some seats in the front and back were none 
