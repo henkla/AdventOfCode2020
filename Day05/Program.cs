@@ -110,8 +110,8 @@ namespace Day05
             // operate on the rows and columns through the
             // use of arrays, initialized with each respective
             // index
-            var rowsOnPlane = InitArrayWithIndex(128);
-            var columnsInRow = InitArrayWithIndex(8);
+            var rowsOnPlane = Enumerable.Range(0, 128).ToArray();
+            var columnsInRow = Enumerable.Range(0, 8).ToArray();
 
             // parse each letter in the boarding pass (the input line)
             foreach (var letter in line)
@@ -145,17 +145,6 @@ namespace Day05
             // going to be brave and assume that this is a fact for the
             // upcoming part as well
             return (rowsOnPlane[0], columnsInRow[0], (rowsOnPlane[0] * idFactor + columnsInRow[0]));
-        }
-
-        private static int[] InitArrayWithIndex(int size)
-        {
-            var array = new int[size];
-            for (int index = 0; index < array.Length; index++)
-            {
-                array[index] = index;
-            }
-
-            return array;
         }
 
         private static int[] DivideAndKeepLastPart(int divisor, int[] array)
