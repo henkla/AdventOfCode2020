@@ -24,7 +24,7 @@ namespace Day05
             var input = inputHelper.GetInputAsLines("input.txt");
 
             Part1(input);
-            //Part2(input);
+            Part2(input);
         }
 
         /*
@@ -88,7 +88,7 @@ namespace Day05
             {
                 // retrieve row, column and id from each boarding pass
                 (int Row, int Column, int Id) boardingPass = ParseBoardingPass(line.Trim());
-                
+
                 // check if the current id is a new highest
                 if (boardingPass.Id > highestId)
                 {
@@ -120,19 +120,19 @@ namespace Day05
                 {
                     // keep the lower part of the rows
                     case 'F':
-                        rowsOnPlane = KeepFirstPart(divisor, rowsOnPlane);
+                        rowsOnPlane = DivideAndKeepFirstPart(divisor, rowsOnPlane);
                         break;
                     // keep the upper part of the rows
                     case 'B':
-                        rowsOnPlane = KeepLastPart(divisor, rowsOnPlane);
+                        rowsOnPlane = DivideAndKeepLastPart(divisor, rowsOnPlane);
                         break;
                     // keep the lower part of the columns
                     case 'L':
-                        columnsInRow = KeepFirstPart(divisor, columnsInRow);
+                        columnsInRow = DivideAndKeepFirstPart(divisor, columnsInRow);
                         break;
                     // keep the upper part of the columns
                     case 'R':
-                        columnsInRow = KeepLastPart(divisor, columnsInRow);
+                        columnsInRow = DivideAndKeepLastPart(divisor, columnsInRow);
                         break;
                     default:
                         Console.WriteLine("Uuuh Houston, we have a problem in the parser...");
@@ -158,12 +158,12 @@ namespace Day05
             return array;
         }
 
-        private static int[] KeepLastPart(int divisor, int[] array)
+        private static int[] DivideAndKeepLastPart(int divisor, int[] array)
         {
             return array.Skip(array.Length / divisor).ToArray();
         }
 
-        private static int[] KeepFirstPart(int divisor, int[] array)
+        private static int[] DivideAndKeepFirstPart(int divisor, int[] array)
         {
             return array.Take(array.Length / divisor).ToArray();
         }
@@ -186,9 +186,49 @@ namespace Day05
          */
         private static void Part2(IEnumerable<string> input)
         {
-            throw new NotImplementedException();
             Console.WriteLine("\nPart 2:\n");
+
+            // we need to store each seat id in a list so that
+            // we later on can figure out the missing element
+            // in the sequence on id's
+            var seatIds = new List<int>();
+
+            // go thorugh each input line (which is supposed to
+            // represent a boarding pass) and parse it
+            foreach (var line in input)
+            {
+                // retrieve row, column and id from each boarding pass
+                (int Row, int Column, int Id) boardingPass = ParseBoardingPass(line.Trim());
+
+                // store the id in list above
+                seatIds.Add(boardingPass.Id);
+            }
+
+            // make sure we operate on a sorted collection
+            seatIds.Sort();
+
+            // if my interpretation of the problem is correct,
+            // this should be the id that is missing from the
+            // sequence, and thus the id that is my own
+            var missingId = FindMissingIds(seatIds);
+
+            Console.WriteLine($"Fort part 2, the missing id (that is mine) is {missingId}.");
             Console.ReadKey();
+        }
+
+        public static int FindMissingIds(IEnumerable<int> source)
+        {
+            // we were told to discard the first and last rows. or rather,
+            // we were told that some seats in the front and back were none 
+            // existant. i chose to be lazy and interpret it as if first
+            // and last row is missing, meaning that the first and last 8
+            // seats (i.e id's) respectively will be missing, so ignore those.
+            // if everything is fine, this enumeration should contain a single 
+            // element, being the missing id that we are looking for. if it 
+            // throws an exception - great, then I know!
+            return Enumerable.Range(8, source.Count() - 8)
+                .Except(source)
+                .Single();
         }
     }
 }
