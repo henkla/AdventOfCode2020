@@ -35,10 +35,8 @@ namespace Day06
             var inputHelper = new InputHelper();
             var input = inputHelper.GetInputAsLines("input.txt");
 
-            // operate on input?
-
             Part1(input);
-            //Part2(input);
+            Part2(input);
         }
 
         /*
@@ -67,39 +65,22 @@ namespace Day06
             Console.WriteLine("\nPart 1:\n");
 
             // parse input
-            var groupAnswers = ParseAllAnswers(input);
+            var groups = ParseAndGroupAnswersTogether(input);
 
             // for part 1 - run distinct and sum all groups together
             var sum = 0;
-            foreach (var answer in groupAnswers)
+            groups.ToList().ForEach(g =>
             {
-                sum += answer.Distinct().Count();
-            }
+                var answers = string.Empty;
+                g.ToList().ForEach(a =>
+                {
+                    answers += a;
+                });
+                sum += answers.Distinct().Count();
+            });
 
             Console.WriteLine($"For part 1, the resulting sum is {sum}.");
             Console.ReadKey();
-        }
-
-        private static IEnumerable<string> ParseAllAnswers(IEnumerable<string> input)
-        {
-            var groupAnswers = new List<string>();
-            var currentGroup = string.Empty;
-
-            foreach (var line in input)
-            {
-                if (string.IsNullOrEmpty(line))
-                {
-                    groupAnswers.Add(currentGroup);
-                    currentGroup = string.Empty;
-                }
-                else
-                {
-                    currentGroup += line;
-                }
-            }
-
-            groupAnswers.Add(currentGroup);
-            return groupAnswers;
         }
 
         /*
@@ -143,12 +124,40 @@ namespace Day06
          */
         private static void Part2(IEnumerable<string> input)
         {
-            throw new NotImplementedException();
             Console.WriteLine("\nPart 2:\n");
 
-            // do stuff
+            var groups = ParseAndGroupAnswersTogether(input);
+            var sum = 0;
+            
+            groups.ToList().ForEach(g =>
+            {
+                sum += g.Aggregate((a, b) => a += b).GroupBy(_ => _).Where(_ => _.Count() == g.Count()).Count();
+            });
 
+            Console.WriteLine($"For part 2, the resulting sum is {sum}.");
             Console.ReadKey();
+        }
+
+        private static IEnumerable<IEnumerable<string>> ParseAndGroupAnswersTogether(IEnumerable<string> input)
+        {
+            var groups = new List<IEnumerable<string>>();
+            var person = new List<string>();
+
+            foreach (var line in input)
+            {
+                if (string.IsNullOrEmpty(line))
+                {
+                    groups.Add(person);
+                    person = new List<string>();
+                }
+                else
+                {
+                    person.Add(line);
+                }
+            }
+
+            groups.Add(person);
+            return groups;
         }
     }
 }
