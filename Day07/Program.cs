@@ -54,12 +54,10 @@ namespace Day07
         static void Main(string[] args)
         {
             var inputHelper = new InputHelper();
-            var input = inputHelper.GetInputAsLines("input.txt");
-
-            // operate on input?
+            var input = inputHelper.GetInputAsLines("example.txt");
 
             Part1(input);
-            //Part2(input);
+            Part2(input);
         }
 
         /*
@@ -70,6 +68,18 @@ namespace Day07
         {
             Console.WriteLine("\nPart 1:\n");
 
+            var parsedRules = ParseAllRules(input);
+            var possibleContainers = new HashSet<string>();
+            var targetRule = parsedRules.Single(r => string.Equals(r.Type, "shiny gold"));
+
+            ExtractParents(ref possibleContainers, targetRule);
+
+            Console.WriteLine($"For part 1, the result is {possibleContainers.Count}.");
+            Console.ReadKey();
+        }
+
+        private static List<Rule> ParseAllRules(IEnumerable<string> input)
+        {
             var parsedRules = new List<Rule>();
             foreach (var line in input)
             {
@@ -79,36 +89,47 @@ namespace Day07
 
             foreach (var rule in parsedRules)
             {
-                if (rule.Contents.Contains("no")) 
+                if (rule.Contents.Contains("no"))
                     continue;
 
                 var splitContents = rule.Contents.Split(", ");
                 foreach (var content in splitContents)
                 {
-                    var parsedContent = Regex.Replace(content.Trim().Split(" bag")[0], @"[\d-]", string.Empty).Trim();
-                    var contentRule = parsedRules.Single(r => string.Equals(r.Type, parsedContent));
-                    
+                    var contentKeyValue = content.Trim().Split(" bag")[0].Trim().Split(' ');
+                    var contentKey = $"{contentKeyValue[1]} {contentKeyValue[2]}";
+                    var contentValue = int.Parse(contentKeyValue[0]);
+
+                    var contentRule = parsedRules.Single(r => string.Equals(r.Type, contentKey));
+
                     contentRule.Parents.Add(rule);
-                    rule.Children.Add(contentRule);
-                    
+                    rule.Children.Add(contentRule, contentValue);
+
                     rule.Contents = string.Empty;
                 }
             }
 
-            var theContainers = new HashSet<string>();
-            var theRule = parsedRules.Single(r => string.Equals(r.Type, "shiny gold"));
-            ExtractParents(ref theContainers, theRule);
-            
-            Console.WriteLine($"For part 1, the result is {theContainers.Count}.");
-            Console.ReadKey();
+            return parsedRules;
         }
 
-        private static void ExtractParents(ref HashSet<string> theContainers, Rule rule)
+        private static void ExtractParents(ref HashSet<string> possibleContainers, Rule rule)
         {
             foreach (var r in rule.Parents)
             {
-                theContainers.Add(r.Type);
-                ExtractParents(ref theContainers, r);
+                possibleContainers.Add(r.Type);
+                ExtractParents(ref possibleContainers, r);
+            }
+        }
+
+        private static void CountChildren(ref int sum, ref HashSet<string> finished, Rule rule, int factor)
+        {
+            foreach (var r in rule.Children)
+            {
+                var lFactor = r.Value;
+                var lChildSum = r.Key.Children.Values.Sum();
+                sum += (lFactor + (lFactor * r.Key.Children.Count()));
+
+
+                CountChildren(ref sum, ref finished, r.Key, lFactor);
             }
         }
 
@@ -117,12 +138,27 @@ namespace Day07
          */
         private static void Part2(IEnumerable<string> input)
         {
-            throw new NotImplementedException();
             Console.WriteLine("\nPart 2:\n");
 
-            // do stuff
+            var parsedRules = ParseAllRules(input);
+            var ruleStack = new Stack<Rule>(parsedRules.Where(r => string.Equals(r.Type, "shiny gold")));
+            var sum = 0;
 
-            Console.WriteLine($"For part 2, the result is RESULT.");
+            while (ruleStack.Any())
+            {
+                var currentRule = ruleStack.Pop();
+                sum += currentRule.Children.Values.Sum();
+
+                foreach (var rule in currentRule.Children.Keys)
+                {
+                    for (var _ = 0; _ < currentRule.Children[rule]; _++)
+                    {
+                        ruleStack.Push(rule);
+                    }
+                }
+            }
+
+            Console.WriteLine($"For part 2, the result is {sum}.");
             Console.ReadKey();
         }
     }

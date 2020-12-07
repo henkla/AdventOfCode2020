@@ -7,11 +7,15 @@
 
   <ItemGroup>
     <None Remove="example.txt" />
+    <None Remove="example2.txt" />
     <None Remove="input.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="example.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="example2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="input.txt">
