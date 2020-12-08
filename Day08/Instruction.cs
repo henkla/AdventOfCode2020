@@ -8,5 +8,13 @@
         public bool HasBeenRun { get; set; }
         public Instruction Previous { get; set; }
         public Instruction Next { get; set; }
+
+        public void SwitchOperation()
+        {
+            if (Operation == "jmp")
+                Operation = "nop";
+            else if (Operation == "nop")
+                Operation = "jmp";
+        }
     }
 }
