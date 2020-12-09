@@ -51,7 +51,7 @@ namespace AdventOfCode2020.Domain
 
         protected void PrintResult(int part)
         {
-            Console.WriteLine($"{_name} ({_day}) part {part}, result is {_result}.");
+            Console.WriteLine($"{_name}/{_day} part {part}, result is {_result}.");
             Console.ReadKey();
         }
     }
