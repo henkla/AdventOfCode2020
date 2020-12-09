@@ -186,23 +186,23 @@ namespace Day09
             // this is where we'll store our end result
             long result = 0;
 
-            // we need to investigate where the contigious range of terms begins, starting
+            // we need to investigate where the contiguous range of terms begins, starting
             // at zero (all the way up to possibly the index where the target value resides)
             for (int startingIndex = 0; startingIndex < Array.FindIndex(numbers.ToArray(), number => number == targetValue); startingIndex++)
             {
                 // this is the sum that we want to equal the target value 
                 // later on
-                var possibleContigiousSum = numbers.ElementAt(startingIndex);
+                var possibleContiguousSum = numbers.ElementAt(startingIndex);
 
                 // store all terms in a list - we need those for later
-                var terms = new List<long>() { possibleContigiousSum };
+                var terms = new List<long>() { possibleContiguousSum };
 
                 // add up all following numbers from the list into the sum up until we
                 // either A) receive a sum that as larger than the target (in which case, 
-                // the contigious range was not the correct one) or B) we find a sum that
+                // the contiguous range was not the correct one) or B) we find a sum that
                 // is equal to the target value (in which case, we have the range that we want)
                 int sequencialIndex = startingIndex;
-                while (possibleContigiousSum < targetValue)
+                while (possibleContiguousSum < targetValue)
                 {
                     // get the element that corresponds with the index
                     var nextTerm = numbers.ElementAt(++sequencialIndex);
@@ -211,11 +211,11 @@ namespace Day09
                     terms.Add(nextTerm);
 
                     // add this element to the sum
-                    possibleContigiousSum += nextTerm;
+                    possibleContiguousSum += nextTerm;
                 }
 
                 // check if the sum is equal to the value that we are looking for
-                if (possibleContigiousSum == targetValue) 
+                if (possibleContiguousSum == targetValue) 
                 {
                     // the result was supposed to be the smallest term and the
                     // largest term added together
