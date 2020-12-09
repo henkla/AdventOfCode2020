@@ -107,10 +107,10 @@ namespace Day09
             for (int index = sizeOfPreamble; index < numbers.Count(); index++)
             {
                 var preamble = numbers.ToList().GetRange(index - sizeOfPreamble, sizeOfPreamble);
-                var firstTerm = numbers.ElementAt(index);
+                var sum = numbers.ElementAt(index);
 
-                if (!preamble.Where(secondTerm => preamble.Contains(firstTerm - secondTerm) && (firstTerm - secondTerm) != secondTerm).Any())
-                    return firstTerm;
+                if (!preamble.Where(term => preamble.Contains(sum - term) && (sum - term) != term).Any())
+                    return sum;
             }
 
             return 0;
