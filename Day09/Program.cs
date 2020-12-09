@@ -120,11 +120,11 @@ namespace Day09
             return result;
         }
 
-        private static bool TermsExistForSum(IEnumerable<long> preamble, long number)
+        private static bool TermsExistForSum(IEnumerable<long> preamble, long targetSum)
         {
-            foreach (var n in preamble)
+            foreach (var possibleTerm in preamble)
             {
-                if (preamble.Contains(number - n) && (number - n) != n) 
+                if (preamble.Contains(targetSum - possibleTerm) && (targetSum - possibleTerm) != possibleTerm) 
                     return true;
             }
 
