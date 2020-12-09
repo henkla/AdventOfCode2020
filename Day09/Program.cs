@@ -197,12 +197,11 @@ namespace Day09
                     // the result was supposed to be the smallest term and the
                     // largest term added together, so make sure to get the range
                     var targetRange = numbers.ToList().GetRange(startingIndex, sequencialIndex - startingIndex + 1);
-                    result = targetRange.Min() + targetRange.Max();
-                    break;
+                    return targetRange.Min() + targetRange.Max();
                 }
             }
             
-            // win
+            // fail
             return result;
         }
     }
