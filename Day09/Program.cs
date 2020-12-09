@@ -74,8 +74,8 @@ namespace Day09
             var input = inputHelper.GetInputAsLines("input.txt");
             var numbers = ParseAllIntegers(input);
 
-            Part1(numbers);
-            //Part2(integers);
+            //Part1(numbers);
+            Part2(numbers);
         }
 
         private static IEnumerable<long> ParseAllIntegers(IEnumerable<string> input)
@@ -94,7 +94,7 @@ namespace Day09
         {
             Console.WriteLine("\nPart 1:\n");
 
-            long result = FindSumWithNoTerms(numbers, 25);
+            var result = FindSumWithNoTerms(numbers, 25);
 
             Console.WriteLine($"For Part 1, the result is {result}");
             Console.ReadKey();
@@ -108,7 +108,7 @@ namespace Day09
                 var preamble = numbers.ToList().GetRange(i - sizeOfPreamble, sizeOfPreamble);
                 var number = numbers.ElementAt(i);
 
-                if (FindTermsForSum(preamble, number) is false)
+                if (ExistsTermsForSum(preamble, number) is false)
                 {
                     result = number;
                     break;
@@ -118,7 +118,7 @@ namespace Day09
             return result;
         }
 
-        private static bool FindTermsForSum(IEnumerable<long> preamble, long number)
+        private static bool ExistsTermsForSum(IEnumerable<long> preamble, long number)
         {
             foreach (var n in preamble)
             {
@@ -127,6 +127,31 @@ namespace Day09
             }
 
             return false;
+        }
+
+        private static long FindSumOfMinMaxOfRange(IEnumerable<long> numbers, long target)
+        {
+
+            for (int i = 0; i < Array.FindIndex(numbers.ToArray(), number => number == target); i++)
+            {
+                var sum = 0;
+                var num = numbers.ElementAt(i);
+
+                int j = i;
+                while (num <= target)
+                {
+                    num += numbers.ElementAt(j++);
+                }
+
+                Console.WriteLine($"Sum was {sum}");
+                if (num == target) 
+                {
+                    Console.WriteLine($"{i} + {j} is {i+j}");
+                }
+            }
+
+            
+            return 980;
         }
 
         /*
@@ -166,12 +191,12 @@ namespace Day09
         
         What is the encryption weakness in your XMAS-encrypted list of numbers?
          */
-        private static void Part2(IEnumerable<int> integers)
+        private static void Part2(IEnumerable<long> numbers)
         {
-            throw new NotImplementedException();
+            
             Console.WriteLine("\nPart 2:\n");
 
-            // do stuff
+            var result = FindSumOfMinMaxOfRange(numbers, 15353384);
 
             Console.WriteLine("For Part 2, the result is {RESULT}");
             Console.ReadKey();
