@@ -72,10 +72,12 @@ namespace Day09
         {
             var inputHelper = new InputHelper();
             var input = inputHelper.GetInputAsLines("input.txt");
-            var numbers = ParseAllIntegers(input);
 
-            //Part1(numbers);
-            Part2(numbers);
+            var numbers = ParseAllIntegers(input);
+            var sizeOfPreample = 25;
+
+            var result = Part1(numbers, sizeOfPreample);
+            Part2(numbers, result);
         }
 
         private static IEnumerable<long> ParseAllIntegers(IEnumerable<string> input)
@@ -90,14 +92,16 @@ namespace Day09
         number in the list (after the preamble) which is not the sum of two of the 25 
         numbers before it. What is the first number that does not have this property?
          */
-        private static void Part1(IEnumerable<long> numbers)
+        private static long Part1(IEnumerable<long> numbers, int sizeOfPreamble)
         {
             Console.WriteLine("\nPart 1:\n");
 
-            var result = FindSumWithNoTerms(numbers, 25);
+            var result = FindSumWithNoTerms(numbers, sizeOfPreamble);
 
             Console.WriteLine($"For Part 1, the result is {result}");
             Console.ReadKey();
+
+            return result;
         }
 
         private static long FindSumWithNoTerms(IEnumerable<long> numbers, int sizeOfPreamble)
@@ -127,31 +131,6 @@ namespace Day09
             }
 
             return false;
-        }
-
-        private static long FindSumOfMinMaxOfRange(IEnumerable<long> numbers, long target)
-        {
-
-            for (int i = 0; i < Array.FindIndex(numbers.ToArray(), number => number == target); i++)
-            {
-                var sum = 0;
-                var num = numbers.ElementAt(i);
-
-                int j = i;
-                while (num <= target)
-                {
-                    num += numbers.ElementAt(j++);
-                }
-
-                Console.WriteLine($"Sum was {sum}");
-                if (num == target) 
-                {
-                    Console.WriteLine($"{i} + {j} is {i+j}");
-                }
-            }
-
-            
-            return 980;
         }
 
         /*
@@ -191,15 +170,62 @@ namespace Day09
         
         What is the encryption weakness in your XMAS-encrypted list of numbers?
          */
-        private static void Part2(IEnumerable<long> numbers)
+        private static void Part2(IEnumerable<long> numbers, long target)
         {
             
             Console.WriteLine("\nPart 2:\n");
 
-            var result = FindSumOfMinMaxOfRange(numbers, 15353384);
+            var result = FindSumOfMinMaxOfRange(numbers, target);
 
-            Console.WriteLine("For Part 2, the result is {RESULT}");
+            Console.WriteLine($"For Part 2, the result is {result}");
             Console.ReadKey();
+        }
+
+        private static long FindSumOfMinMaxOfRange(IEnumerable<long> numbers, long targetValue)
+        {
+            // this is where we'll store our end result
+            long result = 0;
+
+            // we need to investigate where the contigious range of terms begins, starting
+            // at zero (all the way up to possibly the index where the target value resides)
+            for (int startingIndex = 0; startingIndex < Array.FindIndex(numbers.ToArray(), number => number == targetValue); startingIndex++)
+            {
+                // this is the sum that we want to equal the target value 
+                // later on
+                var possibleContigiousSum = numbers.ElementAt(startingIndex);
+
+                // store all terms in a list - we need those for later
+                var terms = new List<long>() { possibleContigiousSum };
+
+                // add up all following numbers from the list into the sum up until we
+                // either A) receive a sum that as larger than the target (in which case, 
+                // the contigious range was not the correct one) or B) we find a sum that
+                // is equal to the target value (in which case, we have the range that we want)
+                int sequencialIndex = startingIndex;
+                while (possibleContigiousSum < targetValue)
+                {
+                    // get the element that corresponds with the index
+                    var nextTerm = numbers.ElementAt(++sequencialIndex);
+
+                    // remember to store term in list for later, if sum checks out
+                    terms.Add(nextTerm);
+
+                    // add this element to the sum
+                    possibleContigiousSum += nextTerm;
+                }
+
+                // check if the sum is equal to the value that we are looking for
+                if (possibleContigiousSum == targetValue) 
+                {
+                    // the result was supposed to be the smallest term and the
+                    // largest term added together
+                    result = terms.Min() + terms.Max();
+                    break;
+                }
+            }
+            
+            // win
+            return result;
         }
     }
 }
