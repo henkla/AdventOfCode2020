@@ -71,10 +71,10 @@ namespace Day09
         static void Main(string[] args)
         {
             var inputHelper = new InputHelper();
-            var input = inputHelper.GetInputAsLines("input.txt");
+            var input = inputHelper.GetInputAsLines("example.txt");
 
             var numbers = ParseAllIntegers(input);
-            var sizeOfPreample = 25;
+            var sizeOfPreample = 5;
 
             var result = Part1(numbers, sizeOfPreample);
             Part2(numbers, result);
@@ -104,31 +104,16 @@ namespace Day09
 
         private static long FindSumWithNoTerms(IEnumerable<long> numbers, int sizeOfPreamble)
         {
-            long result = 0;
-            for (int i = sizeOfPreamble; i < numbers.Count(); i++)
+            for (int index = sizeOfPreamble; index < numbers.Count(); index++)
             {
-                var preamble = numbers.ToList().GetRange(i - sizeOfPreamble, sizeOfPreamble);
-                var number = numbers.ElementAt(i);
+                var preamble = numbers.ToList().GetRange(index - sizeOfPreamble, sizeOfPreamble);
+                var firstTerm = numbers.ElementAt(index);
 
-                if (TermsExistForSum(preamble, number) is false)
-                {
-                    result = number;
-                    break;
-                }
+                if (!preamble.Where(secondTerm => preamble.Contains(firstTerm - secondTerm) && (firstTerm - secondTerm) != secondTerm).Any())
+                    return firstTerm;
             }
 
-            return result;
-        }
-
-        private static bool TermsExistForSum(IEnumerable<long> preamble, long targetSum)
-        {
-            foreach (var possibleTerm in preamble)
-            {
-                if (preamble.Contains(targetSum - possibleTerm) && (targetSum - possibleTerm) != possibleTerm) 
-                    return true;
-            }
-
-            return false;
+            return 0;
         }
 
         /*
@@ -192,21 +177,15 @@ namespace Day09
                 // later on
                 var possibleContiguousSum = numbers.ElementAt(startingIndex);
 
-                // store all terms in a list - we need those for later
-                var possibleTerms = new List<long>() { possibleContiguousSum };
-
                 // add up all following numbers from the list into the sum up until we
                 // either A) receive a sum that as larger than the target (in which case, 
                 // the contiguous range was not the correct one) or B) we find a sum that
                 // is equal to the target value (in which case, we have the range that we want)
-                int sequencialIndex = startingIndex;
+                var sequencialIndex = startingIndex;
                 while (possibleContiguousSum < targetValue)
                 {
                     // get the element that corresponds with the index
                     var nextTerm = numbers.ElementAt(++sequencialIndex);
-
-                    // remember to store term in list for later, if sum checks out
-                    possibleTerms.Add(nextTerm);
 
                     // add this element to the sum
                     possibleContiguousSum += nextTerm;
@@ -216,8 +195,9 @@ namespace Day09
                 if (possibleContiguousSum == targetValue) 
                 {
                     // the result was supposed to be the smallest term and the
-                    // largest term added together
-                    result = possibleTerms.Min() + possibleTerms.Max();
+                    // largest term added together, so make sure to get the range
+                    var targetRange = numbers.ToList().GetRange(startingIndex, sequencialIndex - startingIndex + 1);
+                    result = targetRange.Min() + targetRange.Max();
                     break;
                 }
             }
