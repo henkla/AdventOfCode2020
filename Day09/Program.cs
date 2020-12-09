@@ -108,6 +108,7 @@ namespace Day09
                     return sum;
             }
 
+            // did you tamper with the input?
             return 0;
         }
 
@@ -161,9 +162,6 @@ namespace Day09
 
         private static long FindSumOfMinMaxOfRange(IEnumerable<long> numbers, long targetValue)
         {
-            // this is where we'll store our end result
-            long result = 0;
-
             // we need to investigate where the contiguous range of terms begins, starting
             // at zero (all the way up to possibly the index where the target value resides)
             for (int startingIndex = 0; startingIndex < Array.FindIndex(numbers.ToArray(), number => number == targetValue); startingIndex++)
@@ -195,9 +193,9 @@ namespace Day09
                     return targetRange.Min() + targetRange.Max();
                 }
             }
-            
-            // fail
-            return result;
+
+            // did you tamper with the input?
+            return 0;
         }
     }
 }
