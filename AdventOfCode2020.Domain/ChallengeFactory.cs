@@ -23,6 +23,7 @@ namespace AdventOfCode2020.Domain
     {
         private IDictionary<IChallenge, Part> _challenges;
         private const int _day = 9;
+        private const int _maxDays = 25;
 
         public ChallengeFactory()
         {
@@ -36,8 +37,7 @@ namespace AdventOfCode2020.Domain
 
         public ChallengeFactory LoadAll(Part part = Part.Both)
         {
-            
-            for (int d = 1; d <= _day; d++)
+            for (uint d = 1; d <= _day; d++)
             {
                 LoadDay(d, part);
             }
@@ -45,8 +45,11 @@ namespace AdventOfCode2020.Domain
             return this;
         }
 
-        public ChallengeFactory LoadDay(int day, Part part = Part.Both)
+        public ChallengeFactory LoadDay(uint day, Part part = Part.Both)
         {
+            if (day > _maxDays)
+                throw new ArgumentException($"There are only a maximum of {_maxDays} challenges - submitted value {day} is not valid.");
+
             switch (day)
             {
                 case 1:

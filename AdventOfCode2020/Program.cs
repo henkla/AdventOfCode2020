@@ -7,7 +7,7 @@ namespace AdventOfCode2020
         static void Main(string[] args)
         {
             new ChallengeFactory()
-                .LoadAll()
+                .LoadDay(30)
                 .Run();
         }
     }
