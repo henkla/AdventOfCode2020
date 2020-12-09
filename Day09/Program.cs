@@ -82,9 +82,7 @@ namespace Day09
 
         private static IEnumerable<long> ParseAllIntegers(IEnumerable<string> input)
         {
-            var numbers = new List<long>();
-            input.ToList().ForEach(s => numbers.Add(long.Parse(s)));
-            return numbers;
+            return input.Select(long.Parse).ToList();
         }
 
         /*
@@ -112,7 +110,7 @@ namespace Day09
                 var preamble = numbers.ToList().GetRange(i - sizeOfPreamble, sizeOfPreamble);
                 var number = numbers.ElementAt(i);
 
-                if (ExistsTermsForSum(preamble, number) is false)
+                if (TermsExistForSum(preamble, number) is false)
                 {
                     result = number;
                     break;
@@ -122,7 +120,7 @@ namespace Day09
             return result;
         }
 
-        private static bool ExistsTermsForSum(IEnumerable<long> preamble, long number)
+        private static bool TermsExistForSum(IEnumerable<long> preamble, long number)
         {
             foreach (var n in preamble)
             {
