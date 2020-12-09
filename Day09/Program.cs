@@ -195,7 +195,7 @@ namespace Day09
                 var possibleContiguousSum = numbers.ElementAt(startingIndex);
 
                 // store all terms in a list - we need those for later
-                var terms = new List<long>() { possibleContiguousSum };
+                var possibleTerms = new List<long>() { possibleContiguousSum };
 
                 // add up all following numbers from the list into the sum up until we
                 // either A) receive a sum that as larger than the target (in which case, 
@@ -208,7 +208,7 @@ namespace Day09
                     var nextTerm = numbers.ElementAt(++sequencialIndex);
 
                     // remember to store term in list for later, if sum checks out
-                    terms.Add(nextTerm);
+                    possibleTerms.Add(nextTerm);
 
                     // add this element to the sum
                     possibleContiguousSum += nextTerm;
@@ -219,7 +219,7 @@ namespace Day09
                 {
                     // the result was supposed to be the smallest term and the
                     // largest term added together
-                    result = terms.Min() + terms.Max();
+                    result = possibleTerms.Min() + possibleTerms.Max();
                     break;
                 }
             }
