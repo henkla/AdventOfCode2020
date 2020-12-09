@@ -73,16 +73,11 @@ namespace Day09
             var inputHelper = new InputHelper();
             var input = inputHelper.GetInputAsLines("input.txt");
 
-            var numbers = ParseAllIntegers(input);
+            var numbers = input.Select(long.Parse);
             var sizeOfPreample = 25;
 
             var result = Part1(numbers, sizeOfPreample);
             Part2(numbers, result);
-        }
-
-        private static IEnumerable<long> ParseAllIntegers(IEnumerable<string> input)
-        {
-            return input.Select(long.Parse).ToList();
         }
 
         /*
