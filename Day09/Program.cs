@@ -71,10 +71,10 @@ namespace Day09
         static void Main(string[] args)
         {
             var inputHelper = new InputHelper();
-            var input = inputHelper.GetInputAsLines("example.txt");
+            var input = inputHelper.GetInputAsLines("input.txt");
 
             var numbers = ParseAllIntegers(input);
-            var sizeOfPreample = 5;
+            var sizeOfPreample = 25;
 
             var result = Part1(numbers, sizeOfPreample);
             Part2(numbers, result);
@@ -106,7 +106,7 @@ namespace Day09
         {
             for (int index = sizeOfPreamble; index < numbers.Count(); index++)
             {
-                var preamble = numbers.ToList().GetRange(index - sizeOfPreamble, sizeOfPreamble);
+                var preamble = numbers.Skip(index - sizeOfPreamble).Take(sizeOfPreamble);
                 var sum = numbers.ElementAt(index);
 
                 if (!preamble.Where(term => preamble.Contains(sum - term) && (sum - term) != term).Any())
