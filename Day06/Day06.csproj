@@ -19,8 +19,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AdventOfCode2020.Library\AdventOfCode2020.Library.csproj" />
-  </ItemGroup>
-
 </Project>

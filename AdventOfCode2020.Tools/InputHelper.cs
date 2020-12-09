@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
-namespace AdventOfCode2020.Library
+namespace AdventOfCode2020.Tools
 {
+    public enum SortBy
+    {
+        None = 0,
+        Ascending = 1,
+        Descending = 2
+    }
+
     public class InputHelper
     {
         private readonly string _currentPath;
@@ -24,7 +32,7 @@ namespace AdventOfCode2020.Library
             }
             catch (FileNotFoundException e)
             {
-                Console.WriteLine($"Fel: Filen kunde inte hittas. Kontrollera sökvägen: {inputPath}");
+                Console.WriteLine($"Filen kunde inte hittas. Kontrollera sökvägen: {inputPath}");
                 throw e;
             }
         }

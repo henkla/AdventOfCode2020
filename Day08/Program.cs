@@ -1,6 +1,7 @@
 ﻿using AdventOfCode2020.Library;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Day08
@@ -68,8 +69,8 @@ namespace Day08
          */
         static void Main(string[] args)
         {
-            var inputHelper = new InputHelper();
-            var input = inputHelper.GetInputAsLines("input.txt");
+            var inputHelper = new InputHelper(Directory.GetCurrentDirectory() + "\\");
+            var input = inputHelper.GetInputAsLines("example.txt");
             var instructions = ParseInput(input);
 
             Part1(instructions);
