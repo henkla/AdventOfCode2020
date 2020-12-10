@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day06
 {
-    internal class CustomCustoms : BaseChallenge
+    public class CustomCustoms : BaseChallenge
     {
         private IEnumerable<IEnumerable<string>> _groups;
 

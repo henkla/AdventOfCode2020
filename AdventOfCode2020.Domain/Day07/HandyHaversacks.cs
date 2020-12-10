@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day07
 {
-    internal class HandyHaversacks : BaseChallenge
+    public class HandyHaversacks : BaseChallenge
     {
         private List<Rule> _parsedRules;
         private string _targetRule;

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day08
 {
-    internal class HandheldHalting : BaseChallenge
+    public class HandheldHalting : BaseChallenge
     {
         private IEnumerable<string> _input;
         private IEnumerable<Instruction> _instructions;

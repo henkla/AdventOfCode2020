@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AdventOfCode2020.Domain.Day03
 {
-    internal class TobogganTrajectory : BaseChallenge
+    public class TobogganTrajectory : BaseChallenge
     {
         private char[][] _input;
 

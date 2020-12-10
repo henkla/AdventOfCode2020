@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day02
 {
-    internal class PasswordPhilosophy : BaseChallenge
+    public class PasswordPhilosophy : BaseChallenge
     {
         private IEnumerable<string> _input;
         private int _offset;

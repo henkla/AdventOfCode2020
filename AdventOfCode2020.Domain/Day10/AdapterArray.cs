@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day10
 {
-    internal class AdapterArray : BaseChallenge
+    public class AdapterArray : BaseChallenge
     {
         private int _baseDiff;
         private List<Adapter> _adapters;

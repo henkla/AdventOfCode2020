@@ -1,4 +1,5 @@
-﻿using AdventOfCode2020.Domain.Day01;
+﻿using AdventOfCode2020.Domain;
+using AdventOfCode2020.Domain.Day01;
 using AdventOfCode2020.Domain.Day02;
 using AdventOfCode2020.Domain.Day03;
 using AdventOfCode2020.Domain.Day04;
@@ -11,25 +12,26 @@ using AdventOfCode2020.Domain.Day10;
 using AdventOfCode2020.Tools;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace AdventOfCode2020.Domain
+namespace AdventOfCode2020
 {
-    public class ChallengeFactory
+    internal class ChallengeFactory
     {
-        private IDictionary<IChallenge, Part> _challenges;
+        private IDictionary<string, (IChallenge Challenge, Part Part)> _challenges;
         private readonly uint _maxDays;
         private readonly uint _day;
 
         public ChallengeFactory()
         {
-            _challenges = new Dictionary<IChallenge, Part>();
+            _challenges = new Dictionary<string, (IChallenge Challenge, Part Part)>();
             _maxDays = 25;
             _day = 10;
         }
 
         public IEnumerable<IChallenge> GetLoadedChallenges()
         {
-            return _challenges.Keys;
+            return _challenges.Values.Select(v => v.Challenge);
         }
 
         public ChallengeFactory Load(Challenge challenge, Part part = Part.Both)
@@ -58,34 +60,34 @@ namespace AdventOfCode2020.Domain
             switch (day)
             {
                 case 1:
-                    _challenges.Add(new ReportRepair(), part);
+                    AddOrUpdateChallenge<ReportRepair>(part);
                     break;
                 case 2:
-                    _challenges.Add(new PasswordPhilosophy(), part);
+                    AddOrUpdateChallenge<PasswordPhilosophy>(part);
                     break;
                 case 3:
-                    _challenges.Add(new TobogganTrajectory(), part);
+                    AddOrUpdateChallenge<TobogganTrajectory>(part);
                     break;
                 case 4:
-                    _challenges.Add(new PassportProcessing(), part);
+                    AddOrUpdateChallenge<PassportProcessing>(part);
                     break;
                 case 5:
-                    _challenges.Add(new BinaryBoarding(), part);
+                    AddOrUpdateChallenge<BinaryBoarding>(part);
                     break;
                 case 6:
-                    _challenges.Add(new CustomCustoms(), part);
+                    AddOrUpdateChallenge<CustomCustoms>(part);
                     break;
                 case 7:
-                    _challenges.Add(new HandyHaversacks(), part);
+                    AddOrUpdateChallenge<HandyHaversacks>(part);
                     break;
                 case 8:
-                    _challenges.Add(new HandheldHalting(), part);
+                    AddOrUpdateChallenge<HandheldHalting>(part);
                     break;
                 case 9:
-                    _challenges.Add(new EncodingError(), part);
+                    AddOrUpdateChallenge<EncodingError>(part);
                     break;
                 case 10:
-                    _challenges.Add(new AdapterArray(), part);
+                    AddOrUpdateChallenge<AdapterArray>(part);
                     break;
                 case 11:
                 case 12:
@@ -107,12 +109,25 @@ namespace AdventOfCode2020.Domain
 
             return this;
         }
-        
+
+        private void AddOrUpdateChallenge<T>(Part part) where T : IChallenge
+        {
+            var key = typeof(T).Name;
+            if (!_challenges.ContainsKey(key))
+            {
+                _challenges.Add(key, (Activator.CreateInstance<T>(), part));
+            }
+            else
+            {
+                _challenges[key] = (_challenges[key].Challenge, part);
+            }
+        }
+
         public void Run()
         {
             foreach (var challenge in _challenges)
             {
-                challenge.Key.Run(challenge.Value);
+                challenge.Value.Challenge.Run(challenge.Value.Part);
             }
         }
     }

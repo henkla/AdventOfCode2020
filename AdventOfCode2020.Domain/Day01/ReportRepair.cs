@@ -4,10 +4,15 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day01
 {
-    internal class ReportRepair : BaseChallenge
+    public class ReportRepair : BaseChallenge
     {
         private IEnumerable<int> _input;
         private int _target;
+
+        public ReportRepair()
+        {
+
+        }
 
         protected override void Initialize()
         {

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day05
 {
-    internal class BinaryBoarding : BaseChallenge
+    public class BinaryBoarding : BaseChallenge
     {
         private IEnumerable<string> _input;
 

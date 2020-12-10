@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain
 {
-    internal abstract class BaseChallenge : IChallenge
+    public abstract class BaseChallenge : IChallenge
     {
         protected readonly InputHelper _inputHelper;
         protected readonly string _day;

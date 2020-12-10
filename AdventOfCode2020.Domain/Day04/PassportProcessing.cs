@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day04
 {
-    internal class PassportProcessing : BaseChallenge
+    public class PassportProcessing : BaseChallenge
     {
         private IEnumerable<string> _input;
 

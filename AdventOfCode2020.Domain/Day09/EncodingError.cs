@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day09
 {
-    internal class EncodingError : BaseChallenge
+    public class EncodingError : BaseChallenge
     {
         private IEnumerable<long> _input;
         private int _sizeOfPreamble;
