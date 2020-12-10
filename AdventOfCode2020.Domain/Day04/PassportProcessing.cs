@@ -10,19 +10,19 @@ namespace AdventOfCode2020.Domain.Day04
 
         protected override void Initialize()
         {
-            _input = _inputHelper.GetInputAsLines("input.txt");
+            _input = InputReader.ReadFile("input.txt");
         }
 
         protected override void SolveFirst()
         {
             var parsedPassports = ParseInput(_input, strictValidation: false);
-            _result.First = parsedPassports.Count(p => p.IsValid);
+            Result.First = parsedPassports.Count(p => p.IsValid);
         }
 
         protected override void SolveSecond()
         {
             var parsedPassports = ParseInput(_input, strictValidation: true);
-            _result.Second = parsedPassports.Count(p => p.IsValid);
+            Result.Second = parsedPassports.Count(p => p.IsValid);
         }
 
         private IEnumerable<Passport> ParseInput(IEnumerable<string> input, bool strictValidation)

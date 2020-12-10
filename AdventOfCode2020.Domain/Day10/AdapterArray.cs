@@ -5,65 +5,69 @@ namespace AdventOfCode2020.Domain.Day10
 {
     public class AdapterArray : BaseChallenge
     {
-        private int _baseDiff;
-        private List<Adapter> _adapters;
+        private IEnumerable<int> _input;
+        private int _maxDiff;
 
         protected override void Initialize()
         {
-            var input = _inputHelper.GetInputAsLines("input.txt").Select(s => int.Parse(s)).OrderBy(i => i);
-            _baseDiff = 3;
-
-            _adapters = new List<Adapter>();
-            foreach (var line in input)
-            {
-                _adapters.Add(new Adapter
-                {
-                    Joltage = line
-                });
-            }
+            _maxDiff = 3;
+            _input = InputReader.ReadFile("input.txt")
+                .Select(s => int.Parse(s))
+                .OrderBy(i => i)
+                .ToList();
         }
 
         protected override void SolveFirst()
         {
-            // first, we need a base adapter (the actual outlet)
-            var current = new Adapter { Joltage = 0 };
-
-            // connect all available adapters until they're all used up
-            while (_adapters.Where(a => !a.IsInUse).Any())
-            {
-                // make sure we fullfill the requirements
-                var next = _adapters.Where(a => a.Joltage - current.Joltage >= 0 && a.Joltage - current.Joltage <= _baseDiff && !a.IsInUse).First();
-
-                // plug in the new one to the last used
-                next.PlugInTo(current);
-
-                // the last used is updated
-                current = next;
-            }
-
-            // we need to keep track of the 1-diffs and 3-diffs
+            var joltages = _input;
             var ones = 0;
-            var threes = 0;
+            var threes = 1;
 
-            // begin from the outer adapter all the way to the first used
-            while (current.Previous != default)
+            var currentJolt = 0;
+            foreach (var nextJolt in joltages)
             {
-                if (current.Differance == 1)
-                    ones++;
-                else if (current.Differance == 3)
+                if (nextJolt - currentJolt == 3) 
                     threes++;
+                if (nextJolt - currentJolt == 1) 
+                    ones++;
 
-                current = current.Previous;
+                currentJolt = nextJolt;
             }
 
-            // we must not forget the joltage-diff (baseDiff) between the outer adapter and
-            // the actual equipment we are connecting to the chain of adapters
-            _result.First = _baseDiff + ones * threes;
+            Result.First = ones * threes;
         }
 
         protected override void SolveSecond()
         {
-            throw new System.NotImplementedException();
+            var joltages = _input.Append(0).OrderBy(i => i).ToArray();
+            var permutations = new long[joltages.Length];
+            
+            // there's always one permutation, so start out 
+            // with the first one
+            permutations[0] = 1;
+
+            // for each joltage (starting with the second one) ->
+            foreach (var i in Enumerable.Range(1, joltages.Length - 1))
+            {
+                // -> investigate previous joltages -> 
+                foreach (var j in Enumerable.Range(0, i))
+                {
+                    // -> and look for any with a differance of pre-conditioned maximum
+                    if (joltages[i] - joltages[j] <= _maxDiff) 
+                    {
+                        // for each time we find a previous joltage that 
+                        // is within the limit; increment the number of 
+                        // permutations for current joltage (i) with the 
+                        // permutations that was possible for the previous 
+                        // joltage (j)
+                        permutations[i] += permutations[j];
+                    }
+                }
+            }
+
+            // the last permutation value is the total number of 
+            // permutations given the input provided
+            Result.Second = permutations.Last();
         }
     }
 }

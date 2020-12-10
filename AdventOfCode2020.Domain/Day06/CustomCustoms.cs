@@ -9,7 +9,7 @@ namespace AdventOfCode2020.Domain.Day06
 
         protected override void Initialize()
         {
-            var input = _inputHelper.GetInputAsLines("input.txt");
+            var input = InputReader.ReadFile("input.txt");
             _groups = ParseAndGroupAnswersTogether(input);
         }
 
@@ -27,7 +27,7 @@ namespace AdventOfCode2020.Domain.Day06
                 sum += answers.Distinct().Count();
             });
 
-            _result.First = sum;
+            Result.First = sum;
         }
 
         protected override void SolveSecond()
@@ -38,7 +38,7 @@ namespace AdventOfCode2020.Domain.Day06
                 sum += g.Aggregate((a, b) => a += b).GroupBy(_ => _).Where(_ => _.Count() == g.Count()).Count();
             });
 
-            _result.Second = sum;
+            Result.Second = sum;
         }
 
         private IEnumerable<IEnumerable<string>> ParseAndGroupAnswersTogether(IEnumerable<string> input)

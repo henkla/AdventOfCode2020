@@ -4,35 +4,26 @@ namespace AdventOfCode2020.Domain
 {
     public class Result
     {
-        public long First { get; set; }
-        public long Second { get; set; }
+        public long First { get; internal set; }
+        public long Second { get; internal set; }
 
-        private string _nameOfChallenge;
-        private int _day;
+        public string Name { get; private set; }
+        public int Day { get; private set; }
 
-        public Result(string nameOfChallenge, int day)
+        public Result(string name, int day)
         {
-            First = 0;
-            Second = 0;
-            _nameOfChallenge = nameOfChallenge;
-            _day = day;
-        }
-
-        public long GetPart(uint part)
-        {
-            if (part == 1) return First;
-            if (part == 2) return Second;
-            
-            throw new ArgumentOutOfRangeException($"Part {part} is not a valid part. Check your input parameters.");
+            Name = name;
+            Day = day;
         }
 
         public void Print()
         {
-            Console.WriteLine($"{_nameOfChallenge}/{_day.ToString("D2")}:");
-            if (First > 0)
-                Console.WriteLine($"- part {1}, result is {First}.");
-            if (Second > 0)
-                Console.WriteLine($"- part {2}, result is {Second}.");
+            Console.WriteLine($"\n{Day:D2} / {Name}");
+
+            if (First != default)
+                Console.WriteLine($"- part {1}: {First}");
+            if (Second != default)
+                Console.WriteLine($"- part {2}: {Second}");
 
             Console.ReadKey();
         }

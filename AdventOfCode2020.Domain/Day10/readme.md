@@ -151,6 +151,7 @@ The second example above (the one that starts with 28, 33, 18) has many arrangem
 
 (0), 3, 4, 7, 10, 11, 14, 17, 20, 23, 25, 28, 31, 34, 35, 38, 39, 42, 45,
 48, 49, (52)
+
 In total, this set of adapters can connect the charging outlet to your device in 19208 
 distinct arrangements.
 

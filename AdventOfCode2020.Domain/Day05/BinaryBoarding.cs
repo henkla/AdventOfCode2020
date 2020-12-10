@@ -9,7 +9,7 @@ namespace AdventOfCode2020.Domain.Day05
 
         protected override void Initialize()
         {
-            _input = _inputHelper.GetInputAsLines("input.txt");
+            _input = InputReader.ReadFile("input.txt");
         }
 
         protected override void SolveFirst()
@@ -32,7 +32,7 @@ namespace AdventOfCode2020.Domain.Day05
                 }
             }
 
-            _result.First = highestId;
+            Result.First = highestId;
         }
 
         private (int Row, int Column, int Id) ParseBoardingPass(string line)
@@ -117,7 +117,7 @@ namespace AdventOfCode2020.Domain.Day05
                 .Except(seatIds)
                 .Single();
 
-            _result.Second = missingId;
+            Result.Second = missingId;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace AdventOfCode2020.Domain.Day07
 
         protected override void Initialize()
         {
-            var input = _inputHelper.GetInputAsLines("input.txt");
+            var input = InputReader.ReadFile("input.txt");
             _parsedRules = ParseAllRules(input);
             _targetRule = "shiny gold";
         }
@@ -21,7 +21,7 @@ namespace AdventOfCode2020.Domain.Day07
             var targetRule = _parsedRules.Single(r => string.Equals(r.Type, _targetRule));
             ExtractParents(ref possibleContainers, targetRule);
 
-            _result.First = possibleContainers.Count();
+            Result.First = possibleContainers.Count();
         }
 
         protected override void SolveSecond()
@@ -43,7 +43,7 @@ namespace AdventOfCode2020.Domain.Day07
                 }
             }
 
-            _result.Second = sum;
+            Result.Second = sum;
         }
 
         private List<Rule> ParseAllRules(IEnumerable<string> input)

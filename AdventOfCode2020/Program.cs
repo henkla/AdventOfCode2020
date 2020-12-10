@@ -8,7 +8,6 @@ namespace AdventOfCode2020
         {
             new ChallengeFactory()
                 .Load(Challenge.All, Part.Both)
-                .Load(Challenge.Latest, Part.First)
                 .Run();
         }
     }

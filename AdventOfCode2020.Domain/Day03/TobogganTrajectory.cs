@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day03
 {
@@ -9,12 +10,14 @@ namespace AdventOfCode2020.Domain.Day03
 
         protected override void Initialize()
         {
-            _input = _inputHelper.GetInputAsGrid("input.txt");
+            _input = InputReader.ReadFile("input.txt")
+                .Select(l => l.Select(i => i).ToArray())
+                .ToArray();
         }
 
         protected override void SolveFirst()
         {
-            _result.First = TraverseTheMap(_input, 3, 1);
+            Result.First = TraverseTheMap(_input, 3, 1);
         }
 
         protected override void SolveSecond()
@@ -46,7 +49,7 @@ namespace AdventOfCode2020.Domain.Day03
                 product *= numberOfTrees;
             }
 
-            _result.Second = product;
+            Result.Second = product;
         }
 
         private long TraverseTheMap(char[][] map, int xTravel, int yTravel)

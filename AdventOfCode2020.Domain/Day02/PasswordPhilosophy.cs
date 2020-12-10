@@ -11,7 +11,7 @@ namespace AdventOfCode2020.Domain.Day02
 
         protected override void Initialize()
         {
-            _input = _inputHelper.GetInputAsLines("input.txt");
+            _input = InputReader.ReadFile("input.txt");
             _offset = -1;
         }
 
@@ -29,7 +29,7 @@ namespace AdventOfCode2020.Domain.Day02
                 }
             }
 
-            _result.First = numberOfValidPasswords;
+            Result.First = numberOfValidPasswords;
         }
 
         protected override void SolveSecond()
@@ -44,7 +44,7 @@ namespace AdventOfCode2020.Domain.Day02
                 }
             }
 
-            _result.Second = numberOfValidPasswords;
+            Result.Second = numberOfValidPasswords;
         }
 
         private (char Char, int[] Numerics, string Password) ParseEntry(string entry)

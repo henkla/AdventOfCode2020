@@ -16,7 +16,7 @@ namespace AdventOfCode2020.Domain.Day01
 
         protected override void Initialize()
         {
-            _input = _inputHelper.GetInputAsLines("input.txt").Select(s => int.Parse(s));
+            _input = InputReader.ReadFile("input.txt").Select(s => int.Parse(s));
             _target = 2020;
         }
 
@@ -27,7 +27,7 @@ namespace AdventOfCode2020.Domain.Day01
                 var desiredPair = _target - number;
                 if (_input.Contains(desiredPair))
                 {
-                    _result.First = number * desiredPair;
+                    Result.First = number * desiredPair;
                     return;
                 }
             }
@@ -44,7 +44,7 @@ namespace AdventOfCode2020.Domain.Day01
                     var desiredPair = _target - num1 - num2;
                     if (_input.Contains(desiredPair))
                     {
-                        _result.Second = num1 * num2 * desiredPair;
+                        Result.Second = num1 * num2 * desiredPair;
                         return;
                     }
                 }

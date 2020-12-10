@@ -10,7 +10,7 @@ namespace AdventOfCode2020.Domain.Day08
 
         protected override void Initialize()
         {
-            _input = _inputHelper.GetInputAsLines("input.txt");
+            _input = InputReader.ReadFile("input.txt");
             _instructions = ParseInput(_input);
         }
 
@@ -19,7 +19,7 @@ namespace AdventOfCode2020.Domain.Day08
             var current = _instructions.First();
             var accumulator = RunInstructions(_instructions, ref current);
 
-            _result.First = accumulator;
+            Result.First = accumulator;
         }
 
         protected override void SolveSecond()
@@ -87,7 +87,7 @@ namespace AdventOfCode2020.Domain.Day08
                 }
             }
 
-            _result.Second = accumulator;
+            Result.Second = accumulator;
         }
 
         private IEnumerable<Instruction> ParseInput(IEnumerable<string> input)

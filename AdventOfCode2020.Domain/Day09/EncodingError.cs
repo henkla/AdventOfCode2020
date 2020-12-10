@@ -12,7 +12,7 @@ namespace AdventOfCode2020.Domain.Day09
 
         protected override void Initialize()
         {
-            _input = _inputHelper.GetInputAsLines("input.txt").Select(long.Parse);
+            _input = InputReader.ReadFile("input.txt").Select(long.Parse);
             _sizeOfPreamble = 25;
         }
 
@@ -28,7 +28,7 @@ namespace AdventOfCode2020.Domain.Day09
                     break;
             }
 
-            _result.First = _targetValue = sum;
+            Result.First = _targetValue = sum;
         }
 
         protected override void SolveSecond()
@@ -71,7 +71,7 @@ namespace AdventOfCode2020.Domain.Day09
                 }
             }
 
-            _result.Second = sum;
+            Result.Second = sum;
         }
     }
 }
