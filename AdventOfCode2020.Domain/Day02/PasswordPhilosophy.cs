@@ -29,7 +29,7 @@ namespace AdventOfCode2020.Domain.Day02
                 }
             }
 
-            _result = numberOfValidPasswords;
+            _result[0] = numberOfValidPasswords;
         }
 
         protected override void SolveSecond()
@@ -44,7 +44,7 @@ namespace AdventOfCode2020.Domain.Day02
                 }
             }
 
-            _result = numberOfValidPasswords;
+            _result[1] = numberOfValidPasswords;
         }
 
         private (char Char, int[] Numerics, string Password) ParseEntry(string entry)

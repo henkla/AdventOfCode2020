@@ -27,7 +27,7 @@ namespace AdventOfCode2020.Domain.Day06
                 sum += answers.Distinct().Count();
             });
 
-            _result = sum;
+            _result[0] = sum;
         }
 
         protected override void SolveSecond()
@@ -38,7 +38,7 @@ namespace AdventOfCode2020.Domain.Day06
                 sum += g.Aggregate((a, b) => a += b).GroupBy(_ => _).Where(_ => _.Count() == g.Count()).Count();
             });
 
-            _result = sum;
+            _result[1] = sum;
         }
 
         private IEnumerable<IEnumerable<string>> ParseAndGroupAnswersTogether(IEnumerable<string> input)

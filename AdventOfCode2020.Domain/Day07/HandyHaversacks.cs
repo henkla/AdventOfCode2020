@@ -21,7 +21,7 @@ namespace AdventOfCode2020.Domain.Day07
             var targetRule = _parsedRules.Single(r => string.Equals(r.Type, _targetRule));
             ExtractParents(ref possibleContainers, targetRule);
 
-            _result = possibleContainers.Count();
+            _result[0] = possibleContainers.Count();
         }
 
         protected override void SolveSecond()
@@ -43,7 +43,7 @@ namespace AdventOfCode2020.Domain.Day07
                 }
             }
 
-            _result = sum;
+            _result[1] = sum;
         }
 
         private List<Rule> ParseAllRules(IEnumerable<string> input)

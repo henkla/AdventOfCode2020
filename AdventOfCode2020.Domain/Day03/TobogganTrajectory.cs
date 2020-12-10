@@ -14,7 +14,7 @@ namespace AdventOfCode2020.Domain.Day03
 
         protected override void SolveFirst()
         {
-            _result = TraverseTheMap(_input, 3, 1);
+            _result[0] = TraverseTheMap(_input, 3, 1);
         }
 
         protected override void SolveSecond()
@@ -46,7 +46,7 @@ namespace AdventOfCode2020.Domain.Day03
                 product *= numberOfTrees;
             }
 
-            _result = product;
+            _result[1] = product;
         }
 
         private long TraverseTheMap(char[][] map, int xTravel, int yTravel)

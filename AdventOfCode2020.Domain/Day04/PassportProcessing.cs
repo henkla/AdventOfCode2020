@@ -16,13 +16,13 @@ namespace AdventOfCode2020.Domain.Day04
         protected override void SolveFirst()
         {
             var parsedPassports = ParseInput(_input, strictValidation: false);
-            _result = parsedPassports.Count(p => p.IsValid);
+            _result[0] = parsedPassports.Count(p => p.IsValid);
         }
 
         protected override void SolveSecond()
         {
             var parsedPassports = ParseInput(_input, strictValidation: true);
-            _result = parsedPassports.Count(p => p.IsValid);
+            _result[1] = parsedPassports.Count(p => p.IsValid);
         }
 
         private IEnumerable<Passport> ParseInput(IEnumerable<string> input, bool strictValidation)

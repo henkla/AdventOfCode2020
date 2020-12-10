@@ -14,7 +14,6 @@ namespace AdventOfCode2020.Domain.Day01
         {
             _input = _inputHelper.GetInputAsLines("input.txt").Select(s => int.Parse(s));
             _target = 2020;
-            _result = 0;
         }
 
         protected override void SolveFirst()
@@ -24,7 +23,7 @@ namespace AdventOfCode2020.Domain.Day01
                 var desiredPair = _target - number;
                 if (_input.Contains(desiredPair))
                 {
-                    _result = number * desiredPair;
+                    _result[0] = number * desiredPair;
                     return;
                 }
             }
@@ -41,7 +40,7 @@ namespace AdventOfCode2020.Domain.Day01
                     var desiredPair = _target - num1 - num2;
                     if (_input.Contains(desiredPair))
                     {
-                        _result = num1 * num2 * desiredPair;
+                        _result[1] = num1 * num2 * desiredPair;
                         return;
                     }
                 }

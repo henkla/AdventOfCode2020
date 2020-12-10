@@ -58,7 +58,7 @@ namespace AdventOfCode2020.Domain.Day10
 
             // we must not forget the joltage-diff (baseDiff) between the outer adapter and
             // the actual equipment we are connecting to the chain of adapters
-            _result = _baseDiff + ones * threes;
+            _result[0] = _baseDiff + ones * threes;
         }
 
         protected override void SolveSecond()

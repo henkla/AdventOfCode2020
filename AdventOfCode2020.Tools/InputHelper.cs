@@ -2,29 +2,21 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace AdventOfCode2020.Tools
 {
-    public enum SortBy
-    {
-        None = 0,
-        Ascending = 1,
-        Descending = 2
-    }
-
     public class InputHelper
     {
-        private readonly string _currentPath;
+        private readonly string _workingDirectory;
 
-        public InputHelper(string currentPath)
+        public InputHelper(string workingDirectory)
         {
-            _currentPath = currentPath;
+            _workingDirectory = workingDirectory;
         }
 
         public IEnumerable<string> GetInputAsLines(string inputPath)
         {
-            inputPath = _currentPath + inputPath;
+            inputPath = _workingDirectory + inputPath;
 
             try
             {
@@ -32,18 +24,17 @@ namespace AdventOfCode2020.Tools
             }
             catch (FileNotFoundException e)
             {
-                Console.WriteLine($"Filen kunde inte hittas. Kontrollera sökvägen: {inputPath}");
+                Console.WriteLine($"The file could not be found. Check your path: {inputPath}");
                 throw e;
             }
         }
 
         public char[][] GetInputAsGrid(string inputPath)
         {
-            inputPath = _currentPath + inputPath;
+            inputPath = _workingDirectory + inputPath;
 
             try
             {
-                //return File.ReadAllText(inputPath).ToList();
                 return File.ReadAllLines(inputPath)
                    .Select(l => l.Select(i => i).ToArray())
                    .ToArray();
@@ -51,32 +42,6 @@ namespace AdventOfCode2020.Tools
             catch (FileNotFoundException e)
             {
                 Console.WriteLine($"Fel: Filen kunde inte hittas. Kontrollera sökvägen: {inputPath}");
-                throw e;
-            }
-        }
-
-        public IEnumerable<string> SortCollection(IEnumerable<string> inputAsCollection, SortBy sortBy)
-        {
-            switch (sortBy)
-            {
-                case SortBy.Ascending:
-                    return inputAsCollection.OrderBy(q => q);
-                case SortBy.Descending:
-                    return inputAsCollection.OrderByDescending(q => q);
-                default:
-                    return inputAsCollection;
-            }
-        }
-
-        public IEnumerable<int> ConvertToIntCollection(IEnumerable<string> inputAsStringCollection)
-        {
-            try
-            {
-                return inputAsStringCollection.Select(q => Convert.ToInt32(q)).ToList();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Fel: Kunde inte konvertera till en int-samling.");
                 throw e;
             }
         }

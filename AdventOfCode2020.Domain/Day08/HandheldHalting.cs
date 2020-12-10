@@ -19,7 +19,7 @@ namespace AdventOfCode2020.Domain.Day08
             var current = _instructions.First();
             var accumulator = RunInstructions(_instructions, ref current);
 
-            _result = accumulator;
+            _result[0] = accumulator;
         }
 
         protected override void SolveSecond()
@@ -87,7 +87,7 @@ namespace AdventOfCode2020.Domain.Day08
                 }
             }
 
-            _result = accumulator;
+            _result[1] = accumulator;
         }
 
         private IEnumerable<Instruction> ParseInput(IEnumerable<string> input)

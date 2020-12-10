@@ -32,7 +32,7 @@ namespace AdventOfCode2020.Domain.Day05
                 }
             }
 
-            _result = highestId;
+            _result[0] = highestId;
         }
 
         private (int Row, int Column, int Id) ParseBoardingPass(string line)
@@ -117,12 +117,7 @@ namespace AdventOfCode2020.Domain.Day05
                 .Except(seatIds)
                 .Single();
 
-            _result = missingId;
-        }
-
-        private object FindMissingId(List<int> seatIds)
-        {
-            throw new System.NotImplementedException();
+            _result[1] = missingId;
         }
     }
 }

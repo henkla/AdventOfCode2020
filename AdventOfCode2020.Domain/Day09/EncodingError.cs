@@ -28,7 +28,7 @@ namespace AdventOfCode2020.Domain.Day09
                     break;
             }
 
-            _result = _targetValue = sum;
+            _result[0] = _targetValue = sum;
         }
 
         protected override void SolveSecond()
@@ -71,7 +71,7 @@ namespace AdventOfCode2020.Domain.Day09
                 }
             }
 
-            _result = sum;
+            _result[1] = sum;
         }
     }
 }
