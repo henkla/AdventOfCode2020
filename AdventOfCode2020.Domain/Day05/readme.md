@@ -1,4 +1,4 @@
-﻿#--- Day 5: Binary Boarding ---
+﻿# --- Day 5: Binary Boarding ---
 You board your plane only to discover a new problem: you dropped 
 your boarding pass! You aren't sure which seat is yours, and all 
 of the flight attendants are busy with the flood of people that 
@@ -56,7 +56,7 @@ BBFFBBFRLL: row 102, column 4, seat ID 820.
 As a sanity check, look through your list of boarding passes. What is the 
 highest seat ID on a boarding pass?
 
-#--- Part Two ---
+# --- Part Two ---
 Ding! The "fasten seat belt" signs have turned on. Time to find your seat.
 
 It's a completely full flight, so your seat should be the only missing 

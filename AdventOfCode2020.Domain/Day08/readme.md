@@ -1,4 +1,4 @@
-﻿#--- Day 8: Handheld Halting ---
+﻿# --- Day 8: Handheld Halting ---
 Your flight to the major airline hub reaches cruising altitude without 
 incident. While you consider checking the in-flight menu for one of those 
 drinks that come with a little umbrella, you are interrupted by the kid 
@@ -64,7 +64,7 @@ the accumulator is 5.
 Run your copy of the boot code. Immediately before any instruction is executed a 
 second time, what value is in the accumulator?
 
-#--- Part Two ---
+# --- Part Two ---
 After some careful analysis, you believe that exactly one instruction is corrupted.
 
 Somewhere in the program, either a jmp is supposed to be a nop, or a nop is supposed 
