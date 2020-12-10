@@ -20,27 +20,27 @@ namespace AdventOfCode2020.Domain
             _inputHelper = new InputHelper(Directory.GetCurrentDirectory() + "\\" + _day + "\\");
         }
 
-        public void RunBoth()
+        public void Run(Part part)
         {
             Initialize();
-            SolveFirst();
-            PrintResult(1);
-            SolveSecond();
-            PrintResult(2);
-        }
 
-        public void RunFirst()
-        {
-            Initialize();
-            SolveFirst();
-            PrintResult(1);
-        }
-
-        public void RunSecond()
-        {
-            Initialize();
-            SolveSecond();
-            PrintResult(2);
+            switch (part)
+            {
+                case Part.First:
+                    SolveFirst();
+                    PrintResult(1);
+                    break;
+                case Part.Second:
+                    SolveSecond();
+                    PrintResult(2);
+                    break;
+                case Part.Both:
+                    SolveFirst();
+                    PrintResult(1);
+                    SolveSecond();
+                    PrintResult(2);
+                    break;
+            }
         }
 
         protected abstract void Initialize();

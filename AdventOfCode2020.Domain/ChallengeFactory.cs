@@ -8,18 +8,12 @@ using AdventOfCode2020.Domain.Day07;
 using AdventOfCode2020.Domain.Day08;
 using AdventOfCode2020.Domain.Day09;
 using AdventOfCode2020.Domain.Day10;
+using AdventOfCode2020.Tools;
 using System;
 using System.Collections.Generic;
 
 namespace AdventOfCode2020.Domain
 {
-    public enum Part
-    {
-        Both = 0,
-        First = 1,
-        Second = 2
-    }
-
     public class ChallengeFactory
     {
         private IDictionary<IChallenge, Part> _challenges;
@@ -36,17 +30,25 @@ namespace AdventOfCode2020.Domain
             return _challenges.Keys;
         }
 
-        public ChallengeFactory LoadAll(Part part = Part.Both)
+        public ChallengeFactory Load(Challenge challenge, Part part = Part.Both)
         {
-            for (uint d = 1; d <= _day; d++)
+            switch (challenge)
             {
-                LoadDay(d, part);
+                case Challenge.All:
+                    for (uint d = 1; d <= _day; d++)
+                    {
+                        Load(d, part);
+                    }
+                    break;
+                case Challenge.Latest:
+                    Load(_day, part);
+                    break;
             }
 
             return this;
         }
 
-        public ChallengeFactory LoadDay(uint day, Part part = Part.Both)
+        public ChallengeFactory Load(uint day, Part part = Part.Both)
         {
             if (day > _maxDays)
                 throw new ArgumentException($"There are only a maximum of {_maxDays} challenges - submitted value {day} is not valid.");
@@ -89,28 +91,12 @@ namespace AdventOfCode2020.Domain
 
             return this;
         }
-
-        public ChallengeFactory LoadLatest(Part part = Part.Both)
-        {
-            return LoadDay(_day, part);
-        }
-
+        
         public void Run()
         {
             foreach (var challenge in _challenges)
             {
-                switch (challenge.Value)
-                {
-                    case Part.Both:
-                        challenge.Key.RunBoth();
-                        break;
-                    case Part.First:
-                        challenge.Key.RunFirst();
-                        break;
-                    case Part.Second:
-                        challenge.Key.RunSecond();
-                        break;
-                }
+                challenge.Key.Run(challenge.Value);
             }
         }
     }

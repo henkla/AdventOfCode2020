@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2020.Domain;
+using AdventOfCode2020.Tools;
 
 namespace AdventOfCode2020
 {
@@ -7,7 +8,7 @@ namespace AdventOfCode2020
         static void Main(string[] args)
         {
             new ChallengeFactory()
-                .LoadLatest()
+                .Load(Challenge.All, Part.Both)
                 .Run();
         }
     }
