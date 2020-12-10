@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day02
 {
-    public class PasswordPhilosophy : BaseChallenge
+    internal class PasswordPhilosophy : BaseChallenge
     {
         private IEnumerable<string> _input;
         private int _offset;
@@ -29,7 +29,7 @@ namespace AdventOfCode2020.Domain.Day02
                 }
             }
 
-            _result[0] = numberOfValidPasswords;
+            _result.First = numberOfValidPasswords;
         }
 
         protected override void SolveSecond()
@@ -44,7 +44,7 @@ namespace AdventOfCode2020.Domain.Day02
                 }
             }
 
-            _result[1] = numberOfValidPasswords;
+            _result.Second = numberOfValidPasswords;
         }
 
         private (char Char, int[] Numerics, string Password) ParseEntry(string entry)

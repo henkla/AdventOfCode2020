@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day05
 {
-    public class BinaryBoarding : BaseChallenge
+    internal class BinaryBoarding : BaseChallenge
     {
         private IEnumerable<string> _input;
 
@@ -32,7 +32,7 @@ namespace AdventOfCode2020.Domain.Day05
                 }
             }
 
-            _result[0] = highestId;
+            _result.First = highestId;
         }
 
         private (int Row, int Column, int Id) ParseBoardingPass(string line)
@@ -117,7 +117,7 @@ namespace AdventOfCode2020.Domain.Day05
                 .Except(seatIds)
                 .Single();
 
-            _result[1] = missingId;
+            _result.Second = missingId;
         }
     }
 }

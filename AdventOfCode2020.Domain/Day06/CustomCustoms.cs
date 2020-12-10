@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day06
 {
-    public class CustomCustoms : BaseChallenge
+    internal class CustomCustoms : BaseChallenge
     {
         private IEnumerable<IEnumerable<string>> _groups;
 
@@ -27,7 +27,7 @@ namespace AdventOfCode2020.Domain.Day06
                 sum += answers.Distinct().Count();
             });
 
-            _result[0] = sum;
+            _result.First = sum;
         }
 
         protected override void SolveSecond()
@@ -38,7 +38,7 @@ namespace AdventOfCode2020.Domain.Day06
                 sum += g.Aggregate((a, b) => a += b).GroupBy(_ => _).Where(_ => _.Count() == g.Count()).Count();
             });
 
-            _result[1] = sum;
+            _result.Second = sum;
         }
 
         private IEnumerable<IEnumerable<string>> ParseAndGroupAnswersTogether(IEnumerable<string> input)

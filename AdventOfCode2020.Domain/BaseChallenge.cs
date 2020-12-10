@@ -5,18 +5,18 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain
 {
-    public abstract class BaseChallenge : IChallenge
+    internal abstract class BaseChallenge : IChallenge
     {
         protected readonly InputHelper _inputHelper;
         protected readonly string _day;
         protected readonly string _name;
-        protected long[] _result;
+        protected Result _result { get; private set; }
 
         protected BaseChallenge()
         {
-            _result = new long[2] { 0, 0 };
-            _day = GetType().Namespace.Split('.').Last();
             _name = GetType().Name;
+            _day = GetType().Namespace.Split('.').Last();
+            _result = new Result();
             _inputHelper = new InputHelper(Directory.GetCurrentDirectory() + "\\" + _day + "\\");
         }
 
@@ -49,14 +49,9 @@ namespace AdventOfCode2020.Domain
 
         protected abstract void SolveSecond();
 
-        protected void PrintResult(int part)
+        protected void PrintResult(uint part)
         {
-            if (!Enumerable.Range(1, 2).Contains(part))
-            {
-                throw new ArgumentOutOfRangeException($"Part {part} is not a valid part. Check your input parameters.");
-            }
-
-            Console.WriteLine($"{_name}/{_day} part {part}, result is {_result[part - 1]}.");
+            Console.WriteLine($"{_name}/{_day} part {part}, result is {_result.GetPart(part)}.");
             Console.ReadKey();
         }
     }

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day08
 {
-    public class HandheldHalting : BaseChallenge
+    internal class HandheldHalting : BaseChallenge
     {
         private IEnumerable<string> _input;
         private IEnumerable<Instruction> _instructions;
@@ -19,7 +19,7 @@ namespace AdventOfCode2020.Domain.Day08
             var current = _instructions.First();
             var accumulator = RunInstructions(_instructions, ref current);
 
-            _result[0] = accumulator;
+            _result.First = accumulator;
         }
 
         protected override void SolveSecond()
@@ -87,7 +87,7 @@ namespace AdventOfCode2020.Domain.Day08
                 }
             }
 
-            _result[1] = accumulator;
+            _result.Second = accumulator;
         }
 
         private IEnumerable<Instruction> ParseInput(IEnumerable<string> input)

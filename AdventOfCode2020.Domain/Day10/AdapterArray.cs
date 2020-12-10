@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day10
 {
-    public class AdapterArray : BaseChallenge
+    internal class AdapterArray : BaseChallenge
     {
         private int _baseDiff;
         private List<Adapter> _adapters;
@@ -58,7 +58,7 @@ namespace AdventOfCode2020.Domain.Day10
 
             // we must not forget the joltage-diff (baseDiff) between the outer adapter and
             // the actual equipment we are connecting to the chain of adapters
-            _result[0] = _baseDiff + ones * threes;
+            _result.First = _baseDiff + ones * threes;
         }
 
         protected override void SolveSecond()

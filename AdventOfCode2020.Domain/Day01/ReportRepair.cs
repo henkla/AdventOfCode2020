@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AdventOfCode2020.Domain.Day01
 {
-    public class ReportRepair : BaseChallenge
+    internal class ReportRepair : BaseChallenge
     {
         private IEnumerable<int> _input;
         private int _target;
@@ -23,7 +22,7 @@ namespace AdventOfCode2020.Domain.Day01
                 var desiredPair = _target - number;
                 if (_input.Contains(desiredPair))
                 {
-                    _result[0] = number * desiredPair;
+                    _result.First = number * desiredPair;
                     return;
                 }
             }
@@ -40,7 +39,7 @@ namespace AdventOfCode2020.Domain.Day01
                     var desiredPair = _target - num1 - num2;
                     if (_input.Contains(desiredPair))
                     {
-                        _result[1] = num1 * num2 * desiredPair;
+                        _result.Second = num1 * num2 * desiredPair;
                         return;
                     }
                 }

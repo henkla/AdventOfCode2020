@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day07
 {
-    public class HandyHaversacks : BaseChallenge
+    internal class HandyHaversacks : BaseChallenge
     {
         private List<Rule> _parsedRules;
         private string _targetRule;
@@ -21,7 +21,7 @@ namespace AdventOfCode2020.Domain.Day07
             var targetRule = _parsedRules.Single(r => string.Equals(r.Type, _targetRule));
             ExtractParents(ref possibleContainers, targetRule);
 
-            _result[0] = possibleContainers.Count();
+            _result.First = possibleContainers.Count();
         }
 
         protected override void SolveSecond()
@@ -43,7 +43,7 @@ namespace AdventOfCode2020.Domain.Day07
                 }
             }
 
-            _result[1] = sum;
+            _result.Second = sum;
         }
 
         private List<Rule> ParseAllRules(IEnumerable<string> input)
