@@ -113,13 +113,13 @@ namespace AdventOfCode2020
         private void AddOrUpdateChallenge<T>(Part part) where T : IChallenge
         {
             var key = typeof(T).Name;
-            if (!_challenges.ContainsKey(key))
+            if (_challenges.ContainsKey(key))
             {
-                _challenges.Add(key, (Activator.CreateInstance<T>(), part));
+                _challenges[key] = (_challenges[key].Challenge, part);
             }
             else
             {
-                _challenges[key] = (_challenges[key].Challenge, part);
+                _challenges.Add(key, (Activator.CreateInstance<T>(), part));
             }
         }
 
