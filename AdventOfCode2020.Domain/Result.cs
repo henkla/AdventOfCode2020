@@ -20,9 +20,11 @@ namespace AdventOfCode2020.Domain
         {
             Console.WriteLine($"\n{Day:D2} / {Name}");
 
-            if (First != default)
+            if (First == default && Second == default)
+                Console.WriteLine($"- no result available!");
+            else if (First != default)
                 Console.WriteLine($"- part {1}: {First}");
-            if (Second != default)
+            else if (Second != default)
                 Console.WriteLine($"- part {2}: {Second}");
 
             Console.ReadKey();
