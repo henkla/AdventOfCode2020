@@ -94,13 +94,13 @@ Here is a larger example:
 34
 10
 3
+
 In this larger example, in a chain that uses all of the adapters, there are 22 differences of 1 jolt 
 and 10 differences of 3 jolts.
 
 Find a chain that uses all of your adapters to connect the charging outlet to your device's built-in 
 adapter and count the joltage differences between the charging outlet, the adapters, and your device. 
 What is the number of 1-jolt differences multiplied by the number of 3-jolt differences?
-
 
 # --- Part Two ---
 To completely determine whether you have enough adapters, you'll need to figure out how many different 

@@ -17,8 +17,8 @@ namespace AdventOfCode2020.Domain
     public class ChallengeFactory
     {
         private IDictionary<IChallenge, Part> _challenges;
-        private readonly int _maxDays;
-        private readonly int _day;
+        private readonly uint _maxDays;
+        private readonly uint _day;
 
         public ChallengeFactory()
         {
@@ -87,7 +87,21 @@ namespace AdventOfCode2020.Domain
                 case 10:
                     _challenges.Add(new AdapterArray(), part);
                     break;
-                default:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                case 25:
                     throw new NotImplementedException($"The challenge for day {day} has not been created yet.");
             }
 
