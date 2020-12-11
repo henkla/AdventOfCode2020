@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2020.Tools;
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -37,6 +38,7 @@ namespace AdventOfCode2020.Domain
             }
 
             Result.Print();
+            Console.ReadKey();
         }
 
         protected abstract void Initialize();

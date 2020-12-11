@@ -26,8 +26,6 @@ namespace AdventOfCode2020.Domain
                 Console.WriteLine($"- part {1}: {First}");
             else if (Second != default)
                 Console.WriteLine($"- part {2}: {Second}");
-
-            Console.ReadKey();
         }
     }
 }

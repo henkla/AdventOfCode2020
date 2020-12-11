@@ -19,7 +19,7 @@ namespace AdventOfCode2020
 {
     internal class ChallengeFactory
     {
-        private IDictionary<string, (IChallenge Challenge, Part Part)> _challenges;
+        private readonly IDictionary<string, (IChallenge Challenge, Part Part)> _challenges;
         private readonly uint _maxDays;
         private readonly uint _day;
 
