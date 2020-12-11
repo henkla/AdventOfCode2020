@@ -24,7 +24,7 @@ namespace AdventOfCode2020.Tools
             }
             catch (FileNotFoundException e)
             {
-                Console.WriteLine($"The file could not be found. Check your path: {input}");
+                Console.WriteLine($"The file could not be found. Check your path:\n{input}");
                 throw e;
             }
         }

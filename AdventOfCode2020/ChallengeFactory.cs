@@ -91,7 +91,7 @@ namespace AdventOfCode2020
                     AddOrUpdateChallenge<AdapterArray>(part);
                     break;
                 case 11:
-                    AddOrUpdateChallenge<Dummy>(part);
+                    AddOrUpdateChallenge<SeatingSystem>(part);
                     break;
                 case 12:
                 case 13:
@@ -107,6 +107,7 @@ namespace AdventOfCode2020
                 case 23:
                 case 24:
                 case 25:
+                default:
                     throw new NotImplementedException($"The challenge for day {day} has not been created yet.");
             }
 
