@@ -5,15 +5,16 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F31D98B5-A8E6-48F1-9810-78796F10EE49}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2020", "AdventOfCode2020\AdventOfCode2020.csproj", "{21D7EA5E-92F8-4D59-BB25-A0F171D1D5CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2020", "AdventOfCode2020\AdventOfCode2020.csproj", "{21D7EA5E-92F8-4D59-BB25-A0F171D1D5CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2020.Domain", "AdventOfCode2020.Domain\AdventOfCode2020.Domain.csproj", "{5B5DE950-7E12-46F8-BAC8-438309CB0364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2020.Domain", "AdventOfCode2020.Domain\AdventOfCode2020.Domain.csproj", "{5B5DE950-7E12-46F8-BAC8-438309CB0364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2020.Tools", "AdventOfCode2020.Tools\AdventOfCode2020.Tools.csproj", "{765EFDDE-A4E4-4DF0-B073-9C01154EE7DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2020.Tools", "AdventOfCode2020.Tools\AdventOfCode2020.Tools.csproj", "{765EFDDE-A4E4-4DF0-B073-9C01154EE7DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

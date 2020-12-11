@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace AdventOfCode2020.Domain.Day11
@@ -10,14 +9,21 @@ namespace AdventOfCode2020.Domain.Day11
         private IEnumerable<string> _input;
         private Tile[][] _seats;
 
-        public enum Tile
+        private enum Tile
         {
             Floor,
             Available,
             Occupied
         }
 
-        private class Direction
+        private enum Direction
+        {
+            Negative = -1,
+            Neutral = 0,
+            Positive = 1
+        }
+
+        private class Route
         {
             public bool North { get; }
             public bool East { get; }
@@ -30,7 +36,7 @@ namespace AdventOfCode2020.Domain.Day11
             public bool NW => North && West;
 
 
-            public Direction(Tile[][] seats, int x, int y)
+            public Route(Tile[][] seats, int x, int y)
             {
                 North = y > 0;
                 East = x <= seats[y].Length - 2;
@@ -55,32 +61,37 @@ namespace AdventOfCode2020.Domain.Day11
 
         protected override void SolveFirst()
         {
-            // start out with a clean state
-            var seats = _seats;
-            var count = 0;
-
-            // continue until the states match
-            while (true)
-            {
-                var oldState = seats.Select(l => l.Select(x => x).ToList()).ToList();
-                var newState = Iterate(seats);
-
-                Debug.WriteLine($"{count++} iterations completed");
-
-                // does the states match?
-                if (Enumerable.SequenceEqual(oldState.SelectMany(a => a), newState.SelectMany(b => b)))
-                {
-                    // we have our result - break out of forever-loop
-                    Result.First = newState.Sum(y => y.Count(x => x == Tile.Occupied));
-                    return;
-                }
-
-                // update the seat state with the new (altered) one
-                seats = newState;
-            }
+            // this will be our strategy for finding seats of interest inside our iterations
+            Func<Tile[][], int, int, bool[]> func = GetAdjacentSeatsOfInterest;
+            Result.First = RunSimulation(func, 4);
+        }
+        
+        protected override void SolveSecond()
+        {
+            // this will be our strategy for finding seats of interest inside our iterations
+            Func<Tile[][], int, int, bool[]> func = GetFirstSeatsOfInterest;
+            Result.Second = RunSimulation(func, 5);
         }
 
-        public Tile[][] Iterate(Tile[][] seats)
+        private long RunSimulation(Func<Tile[][], int, int, bool[]> func, int tolerance)
+        {
+            // start out with a clean state
+            var seats = _seats;
+            var oldState = seats;
+            var newState = seats;
+
+            do
+            {
+                oldState = seats.Select(l => l.Select(x => x).ToArray()).ToArray();
+                newState = Iterate(seats, func, tolerance);
+                seats = newState;
+
+            } while (Enumerable.SequenceEqual(oldState.SelectMany(a => a), newState.SelectMany(b => b)) is false);
+
+            return newState.Sum(y => y.Count(x => x == Tile.Occupied));
+        }
+
+        private Tile[][] Iterate(Tile[][] seats, Func<Tile[][], int, int, bool[]> seatsOfInterest, int tolerance)
         {
             // this is the seat-state we will be operating on
             var newState = seats.Select(l => l.Select(c => c).ToArray()).ToArray();
@@ -92,28 +103,16 @@ namespace AdventOfCode2020.Domain.Day11
                     // this is the current seat
                     var current = newState[yPos][xPos];
 
-                    // find out possible directions from current xy
-                    var go = new Direction(seats, xPos, yPos);
-
                     // find out how many taken seats there are in the surroundings
-                    var neighbours = new[]
-                    {
-                        go.North && seats[yPos - 1][xPos] == Tile.Occupied,
-                        go.South && seats[yPos + 1][xPos] == Tile.Occupied,
-                        go.West && seats[yPos][xPos - 1] == Tile.Occupied,
-                        go.East && seats[yPos][xPos + 1] == Tile.Occupied,
-                        go.NW && seats[yPos - 1][xPos - 1] == Tile.Occupied,
-                        go.NE && seats[yPos - 1][xPos + 1] == Tile.Occupied,
-                        go.SW && seats[yPos + 1][xPos - 1] == Tile.Occupied,
-                        go.SE && seats[yPos + 1][xPos + 1] == Tile.Occupied
-                    };
-                    
+                    //var neighbours = GetAdjacentSeatsOfInterest(seats, yPos, xPos);
+                    var neighbours = seatsOfInterest.Invoke(seats, yPos, xPos);
+
                     // how many occupied seats are there among the neighbours?
                     var occupieds = neighbours.Count(x => x);
 
                     // - If a seat is occupied(#) and four or more seats adjacent to it are also 
                     //   occupied, the seat becomes empty.
-                    if (current == Tile.Occupied && occupieds >= 4)
+                    if (current == Tile.Occupied && occupieds >= tolerance)
                     {
                         // current seat should be available
                         newState[yPos][xPos] = Tile.Available;
@@ -124,15 +123,70 @@ namespace AdventOfCode2020.Domain.Day11
                     {
                         // current seat should be occupied
                         newState[yPos][xPos] = Tile.Occupied;
-                    };
+                    }
                 }
             }
 
             return newState;
         }
 
-        protected override void SolveSecond()
+        private bool[] GetAdjacentSeatsOfInterest(Tile[][] seats, int yPos, int xPos)
         {
+            // find out possible directions from current xy
+            var r = new Route(seats, xPos, yPos);
+
+            // find out how many taken seats there are in the surroundings
+            return new[]
+            {
+                r.North && seats[yPos - 1][xPos] == Tile.Occupied,
+                r.South && seats[yPos + 1][xPos] == Tile.Occupied,
+                r.West && seats[yPos][xPos - 1] == Tile.Occupied,
+                r.East && seats[yPos][xPos + 1] == Tile.Occupied,
+                r.NW && seats[yPos - 1][xPos - 1] == Tile.Occupied,
+                r.NE && seats[yPos - 1][xPos + 1] == Tile.Occupied,
+                r.SW && seats[yPos + 1][xPos - 1] == Tile.Occupied,
+                r.SE && seats[yPos + 1][xPos + 1] == Tile.Occupied
+            };
+        }
+
+        private bool[] GetFirstSeatsOfInterest(Tile[][] seats, int yPos, int xPos)
+        {
+            // find each occupied seat in each directional vector respectively
+            return new[]
+            {
+                FirstSeat(seats, (xPos, Direction.Neutral), (yPos, Direction.Negative)) == Tile.Occupied,
+                FirstSeat(seats, (xPos, Direction.Neutral), (yPos, Direction.Positive)) == Tile.Occupied,
+                FirstSeat(seats, (xPos, Direction.Negative), (yPos, Direction.Neutral)) == Tile.Occupied,
+                FirstSeat(seats, (xPos, Direction.Positive), (yPos, Direction.Neutral)) == Tile.Occupied,
+                FirstSeat(seats, (xPos, Direction.Negative), (yPos, Direction.Negative)) == Tile.Occupied,
+                FirstSeat(seats, (xPos, Direction.Positive), (yPos, Direction.Negative)) == Tile.Occupied,
+                FirstSeat(seats, (xPos, Direction.Negative), (yPos, Direction.Positive)) == Tile.Occupied,
+                FirstSeat(seats, (xPos, Direction.Positive), (yPos, Direction.Positive)) == Tile.Occupied
+            };
+        }
+
+        private Tile FirstSeat(Tile[][] seats, (int Pos, Direction Dir) x, (int Pos, Direction Dir) y)
+        {
+            var xCurrent = x.Pos + (int)x.Dir;
+            var yCurrent = y.Pos + (int)y.Dir;
+            bool WithinBoundaries() => xCurrent >= 0 && yCurrent >= 0 && xCurrent < seats[y.Pos].Length && yCurrent < seats.Length;
+
+            // as long as we don't move out of boundaries
+            while (WithinBoundaries())
+            {
+                // this is the next tile in our directional vector
+                var currentTile = seats[yCurrent][xCurrent];
+
+                // we are interested in seats only - either Availble or Occupied
+                if (currentTile != Tile.Floor)
+                    return currentTile;
+
+                // update position in the desired direction
+                xCurrent += (int)x.Dir;
+                yCurrent += (int)y.Dir;
+            }
+
+            return Tile.Floor;
         }
     }
 }
