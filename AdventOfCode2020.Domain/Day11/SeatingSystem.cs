@@ -61,16 +61,12 @@ namespace AdventOfCode2020.Domain.Day11
 
         protected override void SolveFirst()
         {
-            // this will be our strategy for finding seats of interest inside our iterations
-            Func<Tile[][], int, int, bool[]> func = GetAdjacentSeatsOfInterest;
-            Result.First = RunSimulation(func, 4);
+            Result.First = RunSimulation(GetAdjacentSeatsOfInterest, 4);
         }
         
         protected override void SolveSecond()
         {
-            // this will be our strategy for finding seats of interest inside our iterations
-            Func<Tile[][], int, int, bool[]> func = GetFirstSeatsOfInterest;
-            Result.Second = RunSimulation(func, 5);
+            Result.Second = RunSimulation(GetFirstSeatsOfInterest, 5);
         }
 
         private long RunSimulation(Func<Tile[][], int, int, bool[]> func, int tolerance)
