@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -26,6 +26,8 @@
     <None Remove="Day10\large-example.txt" />
     <None Remove="Day11\example.txt" />
     <None Remove="Day11\input.txt" />
+    <None Remove="Day12\example.txt" />
+    <None Remove="Day12\input.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -93,6 +95,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Day11\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Day12\example.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Day12\input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

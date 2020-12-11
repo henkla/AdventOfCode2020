@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AdventOfCode2020.Domain\AdventOfCode2020.Domain.csproj" />
   </ItemGroup>
 
