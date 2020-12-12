@@ -95,7 +95,7 @@ namespace AdventOfCode2020
                     AddOrUpdateChallenge<SeatingSystem>(part);
                     break;
                 case 12:
-                    AddOrUpdateChallenge<DummyChallenge>(part);
+                    AddOrUpdateChallenge<RainRisk>(part);
                     break;
                 case 13:
                 case 14:
