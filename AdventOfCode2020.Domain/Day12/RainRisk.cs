@@ -21,7 +21,7 @@ namespace AdventOfCode2020.Domain.Day12
             foreach (var instruction in _input)
             {
                 var (Delta, Direction) = GetDelta(instruction, d);
-                
+
                 d = Direction;
                 x += Delta.X;
                 y += Delta.Y;
@@ -57,7 +57,59 @@ namespace AdventOfCode2020.Domain.Day12
 
         protected override void SolveSecond()
         {
-            throw new System.NotImplementedException();
+            var xShip = 0;
+            var yShip = 0;
+            var xWaypoint = xShip + 10;
+            var yWaypoint = yShip + 1;
+
+            foreach (var instruction in _input)
+            {
+                var (Ship, Waypoint) = GetPositions(instruction, xWaypoint, yWaypoint);
+
+                xShip += Ship.X;
+                yShip += Ship.Y;
+                xWaypoint = Waypoint.X;
+                yWaypoint = Waypoint.Y;
+            }
+
+            Result.Second = Math.Abs(xShip) + Math.Abs(yShip);
+        }
+
+        private ((int X, int Y) Ship, (int X, int Y) Waypoint) GetPositions(string instruction, int x, int y)
+        {
+            var action = instruction[0];
+            var value = int.Parse(instruction[1..]);
+
+            (int X, int Y) Rotate(int x, int y, int theta)
+            {
+                var (X, Y) = (x, y);
+                var rotations = theta / 90;
+                
+                while (rotations > 0)
+                {
+                    (X, Y) = (Y, -X);
+                    rotations--;
+                }
+                while (rotations < 0)
+                {
+                    (X, Y) = (-Y, X);
+                    rotations++;
+                }
+
+                return (X, Y);
+            }
+
+            return action switch
+            {
+                'N' => ((0, 0), (x, y + value)),
+                'E' => ((0, 0), (x + value, y)),
+                'S' => ((0, 0), (x, (y + value) * -1)),
+                'W' => ((0, 0), ((x + value) * -1, y)),
+                'L' => ((0, 0), Rotate(x, y, -value)),
+                'R' => ((0, 0), Rotate(x, y, value)),
+                'F' => ((x * value, y * value), (x, y)),
+                _ => throw new ArgumentException($"The action {action} is unknown."),
+            };
         }
     }
 }
