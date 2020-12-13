@@ -103,8 +103,8 @@ namespace AdventOfCode2020.Domain.Day12
             {
                 'N' => ((0, 0), (x, y + value)),
                 'E' => ((0, 0), (x + value, y)),
-                'S' => ((0, 0), (x, (y + value) * -1)),
-                'W' => ((0, 0), ((x + value) * -1, y)),
+                'S' => ((0, 0), (x, y + (-value))),
+                'W' => ((0, 0), (x + (-value), y)),
                 'L' => ((0, 0), Rotate(x, y, -value)),
                 'R' => ((0, 0), Rotate(x, y, value)),
                 'F' => ((x * value, y * value), (x, y)),
