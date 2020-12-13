@@ -11,6 +11,7 @@ using AdventOfCode2020.Domain.Day09;
 using AdventOfCode2020.Domain.Day10;
 using AdventOfCode2020.Domain.Day11;
 using AdventOfCode2020.Domain.Day12;
+using AdventOfCode2020.Domain.Day13;
 using AdventOfCode2020.Tools;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace AdventOfCode2020
         {
             _challenges = new Dictionary<string, (IChallenge Challenge, Part Part)>();
             _maxDays = 25;
-            _day = 12;
+            _day = 13;
         }
 
         public IEnumerable<IChallenge> GetLoadedChallenges()
@@ -98,6 +99,8 @@ namespace AdventOfCode2020
                     AddOrUpdateChallenge<RainRisk>(part);
                     break;
                 case 13:
+                    AddOrUpdateChallenge<ShuttleSearch>(part);
+                    break;
                 case 14:
                 case 15:
                 case 16:

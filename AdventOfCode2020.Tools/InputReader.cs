@@ -20,7 +20,7 @@ namespace AdventOfCode2020.Tools
 
             try
             {
-                return File.ReadAllLines(input).ToList();
+                 return File.ReadAllLines(input).ToList();
             }
             catch (FileNotFoundException e)
             {
