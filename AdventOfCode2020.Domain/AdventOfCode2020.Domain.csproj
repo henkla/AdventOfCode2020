@@ -123,4 +123,13 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Day14\example.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Day14\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
