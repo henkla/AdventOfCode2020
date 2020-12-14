@@ -31,7 +31,7 @@ namespace AdventOfCode2020.Domain
                 case Part.Second:
                     SolveSecond();
                     break;
-                case Part.Both:
+                case Part.Both: 
                     SolveFirst();
                     SolveSecond();
                     break;
