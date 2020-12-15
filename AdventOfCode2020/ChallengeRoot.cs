@@ -14,6 +14,7 @@ using AdventOfCode2020.Domain.Day12;
 using AdventOfCode2020.Domain.Day13;
 using AdventOfCode2020.Domain.Day14;
 using AdventOfCode2020.Domain.Day15;
+using AdventOfCode2020.Domain.Day16;
 using AdventOfCode2020.Tools;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace AdventOfCode2020
             _verbose = verbose;
             _challenges = new Dictionary<string, (IChallenge Challenge, Part Part)>();
             _maxDays = 25;
-            _day = 15;
+            _day = 16;
         }
 
         public IEnumerable<IChallenge> GetLoadedChallenges()
@@ -114,6 +115,8 @@ namespace AdventOfCode2020
                     AddOrUpdateChallenge<RambunctiousRecitation>(part);
                     break;
                 case 16:
+                    AddOrUpdateChallenge<Dummy>(part);
+                    break;
                 case 17:
                 case 18:
                 case 19:
@@ -155,7 +158,7 @@ namespace AdventOfCode2020
                 await challenge.Value.Challenge.RunAsync(challenge.Value.Part);
             }
 
-            Console.WriteLine($"\nAll {_challenges.Count()} challenges finished! Press key to exit...");
+            Console.WriteLine($"\n{(_challenges.Count() == 1 ? "Loaded challenge" : $"All {_challenges.Count()} loaded challenges")} finished! Press any key to exit...");
             Console.ReadKey();
         }
     }
