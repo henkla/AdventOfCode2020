@@ -13,6 +13,7 @@ using AdventOfCode2020.Domain.Day11;
 using AdventOfCode2020.Domain.Day12;
 using AdventOfCode2020.Domain.Day13;
 using AdventOfCode2020.Domain.Day14;
+using AdventOfCode2020.Domain.Day15;
 using AdventOfCode2020.Tools;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,17 @@ using System.Linq;
 
 namespace AdventOfCode2020
 {
-    internal class ChallengeFactory
+    internal class ChallengeRoot
     {
         private readonly IDictionary<string, (IChallenge Challenge, Part Part)> _challenges;
         private readonly uint _maxDays;
         private readonly uint _day;
 
-        public ChallengeFactory()
+        public ChallengeRoot()
         {
             _challenges = new Dictionary<string, (IChallenge Challenge, Part Part)>();
             _maxDays = 25;
-            _day = 14;
+            _day = 15;
         }
 
         public IEnumerable<IChallenge> GetLoadedChallenges()
@@ -38,7 +39,7 @@ namespace AdventOfCode2020
             return _challenges.Values.Select(v => v.Challenge);
         }
 
-        public ChallengeFactory Load(Challenge challenge, Part part = Part.Both)
+        public ChallengeRoot Load(Challenge challenge, Part part = Part.Both)
         {
             switch (challenge)
             {
@@ -56,7 +57,7 @@ namespace AdventOfCode2020
             return this;
         }
 
-        public ChallengeFactory Load(uint day, Part part = Part.Both)
+        public ChallengeRoot Load(uint day, Part part = Part.Both)
         {
             if (day > _maxDays)
                 throw new ArgumentException($"There are only a maximum of {_maxDays} challenges - value {day} is not valid.");
@@ -106,6 +107,8 @@ namespace AdventOfCode2020
                     AddOrUpdateChallenge<DockingData>(part);
                     break;
                 case 15:
+                    AddOrUpdateChallenge<RambunctiousRecitation>(part);
+                    break;
                 case 16:
                 case 17:
                 case 18:
