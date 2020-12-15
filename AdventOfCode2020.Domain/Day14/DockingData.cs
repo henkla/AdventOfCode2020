@@ -7,12 +7,10 @@ namespace AdventOfCode2020.Domain.Day14
 {
     public class DockingData : BaseChallenge
     {
-        private Converter _converter;
         private IEnumerable<string> _input;
 
         protected override void Initialize()
         {
-            _converter = new Converter();
             _input = InputReader.ReadFile("input.txt");
         }
 
@@ -36,7 +34,7 @@ namespace AdventOfCode2020.Domain.Day14
                 }
             }
 
-            register.Select(kv => kv.Value).ToList().ForEach(v => Result.First += _converter.Base2ToBase10(v));
+            register.Select(kv => kv.Value).ToList().ForEach(v => Result.First += Converter.Base2ToBase10(v));
         }
 
         protected override void SolveSecond()
@@ -87,13 +85,13 @@ namespace AdventOfCode2020.Domain.Day14
                 allKeys.Remove(xKey);
             }
 
-            return allKeys.Select(key => _converter.Base2ToBase10(key)).ToList();
+            return allKeys.Select(key => Converter.Base2ToBase10(key)).ToList();
         }
 
         private string SimpleMask(int value, string mask)
         {
             var result = Enumerable.Repeat('0', mask.Length).ToArray();
-            var binary = _converter.Base10ToBase2(value, 36);
+            var binary = Converter.Base10ToBase2(value, 36);
 
             for (int index = binary.Length - 1; index >= 0; index--)
             {
@@ -113,7 +111,7 @@ namespace AdventOfCode2020.Domain.Day14
         private string AdvancedMask(int value, string mask)
         {
             var result = Enumerable.Repeat('0', mask.Length).ToArray();
-            var binary = _converter.Base10ToBase2(value, 36);
+            var binary = Converter.Base10ToBase2(value, 36);
             
             for (int index = binary.Length - 1; index >= 0; index--)
             {

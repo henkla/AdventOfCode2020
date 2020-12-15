@@ -7,7 +7,21 @@ namespace AdventOfCode2020.Domain
 {
     public abstract class BaseChallenge : IChallenge
     {
+        private Converter _converter;
+
         protected InputReader InputReader { get; private set; }
+        protected Converter Converter
+        {
+            get
+            {
+                if (_converter == null)
+                    _converter = new Converter();
+
+                return _converter;
+            }
+        }
+
+        
         public Result Result { get; private set; }
         public string Name => GetType().Name;
         public int Day { get; private set; }
