@@ -7,7 +7,7 @@ namespace AdventOfCode2020
         static void Main(string[] args)
         {
             new ChallengeRoot()
-                .Load(Challenge.Latest, Part.Both)
+                .Load(Challenge.Latest, Part.First)
                 .Run();
         }
     }
