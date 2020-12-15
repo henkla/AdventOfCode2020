@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day08
 {
@@ -14,15 +15,15 @@ namespace AdventOfCode2020.Domain.Day08
             _instructions = ParseInput(_input);
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             var current = _instructions.First();
             var accumulator = RunInstructions(_instructions, ref current);
 
-            Result.First = accumulator;
+            return new PartialResult(1, accumulator, Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             // reset the instructions
             _instructions = ParseInput(_input);
@@ -87,7 +88,7 @@ namespace AdventOfCode2020.Domain.Day08
                 }
             }
 
-            Result.Second = accumulator;
+            return new PartialResult(2, accumulator, Stopwatch.Elapsed);
         }
 
         private IEnumerable<Instruction> ParseInput(IEnumerable<string> input)

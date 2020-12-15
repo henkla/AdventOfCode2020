@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AdventOfCode2020.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day02
 {
@@ -15,7 +17,7 @@ namespace AdventOfCode2020.Domain.Day02
             _offset = -1;
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             var numberOfValidPasswords = 0;
             foreach (var entry in _input)
@@ -29,10 +31,10 @@ namespace AdventOfCode2020.Domain.Day02
                 }
             }
 
-            Result.First = numberOfValidPasswords;
+            return new PartialResult(1, numberOfValidPasswords, Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             var numberOfValidPasswords = 0;
             foreach (var entry in _input)
@@ -44,7 +46,7 @@ namespace AdventOfCode2020.Domain.Day02
                 }
             }
 
-            Result.Second = numberOfValidPasswords;
+            return new PartialResult(2, numberOfValidPasswords, Stopwatch.Elapsed);
         }
 
         private (char Char, int[] Numerics, string Password) ParseEntry(string entry)

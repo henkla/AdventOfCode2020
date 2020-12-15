@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day13
 {
@@ -13,7 +14,7 @@ namespace AdventOfCode2020.Domain.Day13
             _input = InputReader.ReadFile("example.txt").ToArray();
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             var timestamp = int.Parse(_input[0]);
             var ids = _input[1].Split(',');
@@ -31,10 +32,10 @@ namespace AdventOfCode2020.Domain.Day13
             }
 
             var target = table.Where(kv => kv.Value > timestamp).OrderBy(kv => kv.Value).First();
-            Result.First = (target.Value - timestamp) * target.Key;
+            return new PartialResult(1, (target.Value - timestamp) * target.Key, Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             static long GCD(long a, long b)
             {
@@ -54,7 +55,7 @@ namespace AdventOfCode2020.Domain.Day13
                 increment = (increment * curTime) / GCD(increment, curTime);
             }
 
-            Result.Second = earliestTime;
+            return new PartialResult(2, earliestTime, Stopwatch.Elapsed);
         }
     }
 }

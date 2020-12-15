@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day05
 {
@@ -12,7 +13,7 @@ namespace AdventOfCode2020.Domain.Day05
             _input = InputReader.ReadFile("input.txt");
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             // store the current highest Id, since that's what
             // part 1 is all about
@@ -32,7 +33,7 @@ namespace AdventOfCode2020.Domain.Day05
                 }
             }
 
-            Result.First = highestId;
+            return new PartialResult(1, highestId, Stopwatch.Elapsed);
         }
 
         private (int Row, int Column, int Id) ParseBoardingPass(string line)
@@ -89,7 +90,7 @@ namespace AdventOfCode2020.Domain.Day05
             return array.Take(array.Length / divisor).ToArray();
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             // we need to store each seat id in a list so that
             // we later on can figure out the missing element
@@ -117,7 +118,7 @@ namespace AdventOfCode2020.Domain.Day05
                 .Except(seatIds)
                 .Single();
 
-            Result.Second = missingId;
+            return new PartialResult(2, missingId, Stopwatch.Elapsed);
         }
     }
 }

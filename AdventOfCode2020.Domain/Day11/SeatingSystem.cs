@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day11
 {
@@ -59,14 +60,14 @@ namespace AdventOfCode2020.Domain.Day11
                 .ToArray();
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
-            Result.First = RunSimulation(GetAdjacentSeatsOfInterest, 4);
+            return new PartialResult(1, RunSimulation(GetAdjacentSeatsOfInterest, 4), Stopwatch.Elapsed);
         }
         
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
-            Result.Second = RunSimulation(GetFirstSeatsOfInterest, 5);
+            return new PartialResult(2, RunSimulation(GetFirstSeatsOfInterest, 5), Stopwatch.Elapsed);
         }
 
         private long RunSimulation(Func<Tile[][], int, int, bool[]> func, int tolerance)

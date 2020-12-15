@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day09
 {
@@ -16,7 +17,7 @@ namespace AdventOfCode2020.Domain.Day09
             _sizeOfPreamble = 25;
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             long sum = 0;
             for (int index = _sizeOfPreamble; index < _input.Count(); index++)
@@ -28,13 +29,17 @@ namespace AdventOfCode2020.Domain.Day09
                     break;
             }
 
-            Result.First = _targetValue = sum;
+            _targetValue = sum;
+            return new PartialResult(1, sum, Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             if (_targetValue == default)
+            {
                 SolveFirst();
+                Stopwatch.Restart();
+            }
 
             long sum = 0;
             
@@ -71,7 +76,7 @@ namespace AdventOfCode2020.Domain.Day09
                 }
             }
 
-            Result.Second = sum;
+            return new PartialResult(2, sum, Stopwatch.Elapsed);
         }
     }
 }

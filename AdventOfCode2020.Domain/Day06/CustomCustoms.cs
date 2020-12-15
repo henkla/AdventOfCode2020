@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day06
 {
@@ -13,7 +14,7 @@ namespace AdventOfCode2020.Domain.Day06
             _groups = ParseAndGroupAnswersTogether(input);
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             // for part 1 - run distinct and sum all groups together
             var sum = 0;
@@ -27,10 +28,10 @@ namespace AdventOfCode2020.Domain.Day06
                 sum += answers.Distinct().Count();
             });
 
-            Result.First = sum;
+            return new PartialResult(1, sum, Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             var sum = 0;
             _groups.ToList().ForEach(g =>
@@ -38,7 +39,7 @@ namespace AdventOfCode2020.Domain.Day06
                 sum += g.Aggregate((a, b) => a += b).GroupBy(_ => _).Where(_ => _.Count() == g.Count()).Count();
             });
 
-            Result.Second = sum;
+            return new PartialResult(2, sum, Stopwatch.Elapsed);
         }
 
         private IEnumerable<IEnumerable<string>> ParseAndGroupAnswersTogether(IEnumerable<string> input)

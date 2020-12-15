@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AdventOfCode2020.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day04
 {
@@ -13,16 +15,16 @@ namespace AdventOfCode2020.Domain.Day04
             _input = InputReader.ReadFile("input.txt");
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             var parsedPassports = ParseInput(_input, strictValidation: false);
-            Result.First = parsedPassports.Count(p => p.IsValid);
+            return new PartialResult(1, parsedPassports.Count(p => p.IsValid), Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             var parsedPassports = ParseInput(_input, strictValidation: true);
-            Result.Second = parsedPassports.Count(p => p.IsValid);
+            return new PartialResult(2, parsedPassports.Count(p => p.IsValid), Stopwatch.Elapsed);
         }
 
         private IEnumerable<Passport> ParseInput(IEnumerable<string> input, bool strictValidation)

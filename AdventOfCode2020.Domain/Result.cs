@@ -1,31 +1,48 @@
-﻿using System;
+﻿using AdventOfCode2020.Tools;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventOfCode2020.Domain
 {
     public class Result
     {
-        public long First { get; internal set; }
-        public long Second { get; internal set; }
+        public class PartialResult
+        {
+            public int Part { get; private set; }
+            public long Result { get; private set; }
+            public TimeSpan Elapsed { get; private set; }
 
+            public PartialResult(int part, long result, TimeSpan elapsed)
+            {
+                Part = part;
+                Result = result;
+                Elapsed = elapsed;
+            }
+        }
+
+        public ICollection<PartialResult> Results { get; private set; }
         public string Name { get; private set; }
         public int Day { get; private set; }
 
         public Result(string name, int day)
         {
+            Results = new List<PartialResult>();
             Name = name;
             Day = day;
         }
 
         public void Print()
         {
-            Console.WriteLine($"\nRunning {Day:D2} / {Name}...");
+            foreach (var result in Results.OrderBy(r => r.Part))
+            {
+                Console.WriteLine($"- result, part {result.Part}: {result.Result} ({result.Elapsed.Seconds}s {result.Elapsed.Milliseconds}ms)");
+            }
+        }
 
-            if (First != default)
-                Console.WriteLine($"- part {1}: {First}");
-            if (Second != default)
-                Console.WriteLine($"- part {2}: {Second}");
-            if (First == default && Second == default)
-                Console.WriteLine($"- no result available!");
+        internal void Add(PartialResult partialResult)
+        {
+            Results.Add(partialResult);
         }
     }
 }

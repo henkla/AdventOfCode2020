@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day14
 {
@@ -14,7 +15,7 @@ namespace AdventOfCode2020.Domain.Day14
             _input = InputReader.ReadFile("input.txt");
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             var register = new Dictionary<long, string>();
             var mask = string.Empty;
@@ -34,10 +35,12 @@ namespace AdventOfCode2020.Domain.Day14
                 }
             }
 
-            register.Select(kv => kv.Value).ToList().ForEach(v => Result.First += Converter.Base2ToBase10(v));
+            long result = 0;
+            register.Select(kv => kv.Value).ToList().ForEach(v => result += Converter.Base2ToBase10(v));
+            return new PartialResult(1, result, Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             var register = new Dictionary<long, string>();
             var mask = string.Empty;
@@ -58,7 +61,9 @@ namespace AdventOfCode2020.Domain.Day14
                 }
             }
 
-            register.Select(kv => kv.Value).ToList().ForEach(v => Result.Second += long.Parse(v));
+            long result = 0;
+            register.Select(kv => kv.Value).ToList().ForEach(v => result += long.Parse(v));
+            return new PartialResult(2, result, Stopwatch.Elapsed);
         }
 
         private (string LHS, string RHS) ParseInstruction(string line)

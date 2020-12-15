@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2020.Tools;
+using System.Threading.Tasks;
 
 namespace AdventOfCode2020.Domain
 {
@@ -7,6 +8,6 @@ namespace AdventOfCode2020.Domain
         Result Result { get; }
         int Day { get; }
         string Name { get; }
-        void Run(Part part);
+        Task RunAsync(Part part);
     }
 }

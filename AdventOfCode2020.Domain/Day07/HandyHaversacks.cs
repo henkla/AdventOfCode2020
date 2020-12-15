@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day07
 {
@@ -15,16 +16,16 @@ namespace AdventOfCode2020.Domain.Day07
             _targetRule = "shiny gold";
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             var possibleContainers = new HashSet<string>();
             var targetRule = _parsedRules.Single(r => string.Equals(r.Type, _targetRule));
             ExtractParents(ref possibleContainers, targetRule);
 
-            Result.First = possibleContainers.Count();
+            return new PartialResult(1, possibleContainers.Count(), Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             var ruleStack = new Stack<Rule>(_parsedRules.Where(r => string.Equals(r.Type, _targetRule)));
             var sum = 0;
@@ -43,7 +44,7 @@ namespace AdventOfCode2020.Domain.Day07
                 }
             }
 
-            Result.Second = sum;
+            return new PartialResult(2, sum, Stopwatch.Elapsed);
         }
 
         private List<Rule> ParseAllRules(IEnumerable<string> input)

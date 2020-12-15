@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AdventOfCode2020.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day03
 {
@@ -15,12 +17,12 @@ namespace AdventOfCode2020.Domain.Day03
                 .ToArray();
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
-            Result.First = TraverseTheMap(_input, 3, 1);
+            return new PartialResult(2, TraverseTheMap(_input, 3, 1), Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             // the given path to travel for each slope
             var travelConditions = new List<(int XTravel, int YTravel)>
@@ -49,7 +51,7 @@ namespace AdventOfCode2020.Domain.Day03
                 product *= numberOfTrees;
             }
 
-            Result.Second = product;
+            return new PartialResult(2, product, Stopwatch.Elapsed);
         }
 
         private long TraverseTheMap(char[][] map, int xTravel, int yTravel)

@@ -1,7 +1,10 @@
 ﻿using AdventOfCode2020.Tools;
 using System;
+using System.Diagnostics;
 using System.IO;
-using System.Text.RegularExpressions;
+using System.Linq;
+using System.Threading.Tasks;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain
 {
@@ -9,7 +12,6 @@ namespace AdventOfCode2020.Domain
     {
         private Converter _converter;
 
-        protected InputReader InputReader { get; private set; }
         protected Converter Converter
         {
             get
@@ -20,45 +22,53 @@ namespace AdventOfCode2020.Domain
                 return _converter;
             }
         }
-
-        
-        public Result Result { get; private set; }
+        protected InputReader InputReader { get; private set; }
+        protected Stopwatch Stopwatch { get; private set; }
         public string Name => GetType().Name;
         public int Day { get; private set; }
+        public Result Result { get; private set; }
 
         protected BaseChallenge()
         {
-            Day = int.Parse(Regex.Match(GetType().Namespace.Substring(GetType().Namespace.Length - 2, 2), @"\d+").Value);
-            Result = new Result(Name, Day);
+            Day = GetType().Namespace.Split('.').Last().ExtractNumbers();
             InputReader = new InputReader($"{Directory.GetCurrentDirectory()}\\Day{Day:D2}\\");
+            Stopwatch = new Stopwatch();
+            Result = new Result(Name, Day);
         }
 
-        public void Run(Part part)
+        public async Task RunAsync(Part part)
         {
             Initialize();
+
+            Console.WriteLine($"\nRunning {Day:D2} / {Name}...");
 
             switch (part)
             {
                 case Part.First:
-                    SolveFirst();
+                    Result.Add(await RunAsync(SolveFirst));
                     break;
                 case Part.Second:
-                    SolveSecond();
+                    Result.Add(await RunAsync(SolveSecond));
                     break;
-                case Part.Both: 
-                    SolveFirst();
-                    SolveSecond();
+                case Part.Both:
+                    Result.Add(await RunAsync(SolveFirst));
+                    Result.Add(await RunAsync(SolveSecond));
                     break;
             }
 
             Result.Print();
-            Console.ReadKey();
+        }
+
+        private async Task<PartialResult> RunAsync(Func<PartialResult> partToRun)
+        {
+            Stopwatch.Restart();
+            return await Task.Run(() => partToRun.Invoke());
         }
 
         protected abstract void Initialize();
 
-        protected abstract void SolveFirst();
+        protected abstract PartialResult SolveFirst();
 
-        protected abstract void SolveSecond();
+        protected abstract PartialResult SolveSecond();
     }
 }

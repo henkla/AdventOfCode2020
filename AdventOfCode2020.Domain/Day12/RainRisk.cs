@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day12
 {
@@ -12,7 +13,7 @@ namespace AdventOfCode2020.Domain.Day12
             _input = InputReader.ReadFile("input.txt");
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             var d = 90;
             var x = 0;
@@ -27,7 +28,7 @@ namespace AdventOfCode2020.Domain.Day12
                 y += Delta.Y;
             }
 
-            Result.First = Math.Abs(x) + Math.Abs(y);
+            return new PartialResult(1, Math.Abs(x) + Math.Abs(y), Stopwatch.Elapsed);
         }
 
         private ((int X, int Y) Delta, int Direction) GetDelta(string instruction, int direction)
@@ -55,7 +56,7 @@ namespace AdventOfCode2020.Domain.Day12
             };
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             var xShip = 0;
             var yShip = 0;
@@ -72,7 +73,7 @@ namespace AdventOfCode2020.Domain.Day12
                 yWaypoint = Waypoint.Y;
             }
 
-            Result.Second = Math.Abs(xShip) + Math.Abs(yShip);
+            return new PartialResult(2, Math.Abs(xShip) + Math.Abs(yShip), Stopwatch.Elapsed);
         }
 
         private ((int X, int Y) Ship, (int X, int Y) Waypoint) GetPositions(string instruction, int x, int y)

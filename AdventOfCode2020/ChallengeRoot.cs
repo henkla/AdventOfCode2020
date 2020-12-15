@@ -18,6 +18,8 @@ using AdventOfCode2020.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AdventOfCode2020
 {
@@ -142,16 +144,19 @@ namespace AdventOfCode2020
 
             if (_verbose)
             {
-                Console.WriteLine($"Loaded {_challenges[key].Challenge.Day} / {key}, {(part == Part.Both ? "both parts" : $"{part.ToString().ToLower()} part")}...");
+                Console.WriteLine($"Loaded {_challenges[key].Challenge.Day:D2} / {key}, {(part == Part.Both ? "both parts" : $"{part.ToString().ToLower()} part")}...");
             }
         }
 
-        public void Run()
+        public async Task RunAsync()
         {
-            foreach (var challenge in _challenges)
+            foreach (var challenge in _challenges.OrderBy(c => c.Value.Challenge.Day))
             {
-                challenge.Value.Challenge.Run(challenge.Value.Part);
+                await challenge.Value.Challenge.RunAsync(challenge.Value.Part);
             }
+
+            Console.WriteLine($"\nAll {_challenges.Count()} challenges finished! Press key to exit...");
+            Console.ReadKey();
         }
     }
 }

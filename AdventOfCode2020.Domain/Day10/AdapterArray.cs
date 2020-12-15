@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day10
 {
@@ -17,7 +18,7 @@ namespace AdventOfCode2020.Domain.Day10
                 .ToList();
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             var joltages = _input;
             var ones = 0;
@@ -34,10 +35,10 @@ namespace AdventOfCode2020.Domain.Day10
                 currentJolt = nextJolt;
             }
 
-            Result.First = ones * threes;
+            return new PartialResult(1, ones * threes, Stopwatch.Elapsed);
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             var joltages = _input.Append(0).OrderBy(i => i).ToArray();
             var permutations = new long[joltages.Length];
@@ -67,7 +68,7 @@ namespace AdventOfCode2020.Domain.Day10
 
             // the last permutation value is the total number of 
             // permutations given the input provided
-            Result.Second = permutations.Last();
+            return new PartialResult(2, permutations.Last(), Stopwatch.Elapsed);
         }
     }
 }

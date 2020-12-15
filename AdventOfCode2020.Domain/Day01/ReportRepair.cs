@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AdventOfCode2020.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using static AdventOfCode2020.Domain.Result;
 
 namespace AdventOfCode2020.Domain.Day01
 {
@@ -9,33 +11,27 @@ namespace AdventOfCode2020.Domain.Day01
         private IEnumerable<int> _input;
         private int _target;
 
-        public ReportRepair()
-        {
-
-        }
-
         protected override void Initialize()
         {
             _input = InputReader.ReadFile("input.txt").Select(s => int.Parse(s));
             _target = 2020;
         }
 
-        protected override void SolveFirst()
+        protected override PartialResult SolveFirst()
         {
             foreach (var number in _input)
             {
                 var desiredPair = _target - number;
                 if (_input.Contains(desiredPair))
                 {
-                    Result.First = number * desiredPair;
-                    return;
+                    return new PartialResult(1, number * desiredPair, Stopwatch.Elapsed);
                 }
             }
 
             throw new ApplicationException("There are no numbers to match given criteria!");
         }
 
-        protected override void SolveSecond()
+        protected override PartialResult SolveSecond()
         {
             foreach (var num1 in _input)
             {
@@ -44,11 +40,12 @@ namespace AdventOfCode2020.Domain.Day01
                     var desiredPair = _target - num1 - num2;
                     if (_input.Contains(desiredPair))
                     {
-                        Result.Second = num1 * num2 * desiredPair;
-                        return;
+                        return new PartialResult(2, num1 * num2 * desiredPair, Stopwatch.Elapsed);
                     }
                 }
             }
+
+            throw new ApplicationException("There are no numbers to match given criteria!");
         }
     }
 }

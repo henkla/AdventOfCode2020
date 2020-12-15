@@ -8,8 +8,8 @@ namespace AdventOfCode2020
         {
             new ChallengeRoot(verbose: true)
                 .Load(Challenge.All, Part.Both)
-                .Load(Challenge.Latest, Part.First)
-                .Run();
+                .RunAsync()
+                .Wait();
         }
     }
 }
