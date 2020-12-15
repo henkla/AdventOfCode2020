@@ -65,8 +65,29 @@ namespace AdventOfCode2020.Domain.Day14
 
         private (string LHS, string RHS) ParseInstruction(string line)
         {
-            var instruction = line.Split('=').ToArray();
+            var instruction = line.Split('=');
             return (instruction[0].Trim(), instruction[1].Trim());
+        }
+
+        private List<long> ExpandFloatingKey(string floatingKey)
+        {
+            var allKeys = new List<string>() { floatingKey };
+
+            while (allKeys.Any(s => s.Contains('X')))
+            {
+                var xKey = allKeys.First(s => s.Contains('X'));
+                var expandedKey = new StringBuilder(xKey);
+
+                expandedKey[xKey.IndexOf('X')] = '0';
+                allKeys.Add(expandedKey.ToString());
+
+                expandedKey[xKey.IndexOf('X')] = '1';
+                allKeys.Add(expandedKey.ToString());
+
+                allKeys.Remove(xKey);
+            }
+
+            return allKeys.Select(key => _converter.Base2ToBase10(key)).ToList();
         }
 
         private string SimpleMask(int value, string mask)
@@ -93,7 +114,7 @@ namespace AdventOfCode2020.Domain.Day14
         {
             var result = Enumerable.Repeat('0', mask.Length).ToArray();
             var binary = _converter.Base10ToBase2(value, 36);
-
+            
             for (int index = binary.Length - 1; index >= 0; index--)
             {
                 if (Equals(mask[index], '0'))
@@ -107,27 +128,6 @@ namespace AdventOfCode2020.Domain.Day14
             }
 
             return new string(result);
-        }
-
-        private List<long> ExpandFloatingKey(string floatingKey)
-        {
-            var keys = new List<string>() { floatingKey };
-
-            while (keys.Any(key => key.Contains('X')))
-            {
-                var xKey = keys.First(key => key.Contains('X'));
-                var newKey = new StringBuilder(xKey);
-
-                newKey[xKey.IndexOf('X')] = '0';
-                keys.Add(newKey.ToString());
-
-                newKey[xKey.IndexOf('X')] = '1';
-                keys.Add(newKey.ToString());
-
-                keys.Remove(xKey);
-            }
-
-            return keys.Select(key => _converter.Base2ToBase10(key)).ToList();
         }
     }
 }
