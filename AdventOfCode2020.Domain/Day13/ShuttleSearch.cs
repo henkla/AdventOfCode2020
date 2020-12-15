@@ -36,7 +36,7 @@ namespace AdventOfCode2020.Domain.Day13
 
         protected override void SolveSecond()
         {
-            long GCD(long a, long b)
+            static long GCD(long a, long b)
             {
                 while (b != 0) b = a % (a = b); return a;
             }

@@ -18,7 +18,7 @@ namespace AdventOfCode2020.Domain
 
         public void Print()
         {
-            Console.WriteLine($"\n{Day:D2} / {Name}");
+            Console.WriteLine($"\nRunning {Day:D2} / {Name}...");
 
             if (First != default)
                 Console.WriteLine($"- part {1}: {First}");

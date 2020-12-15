@@ -23,12 +23,14 @@ namespace AdventOfCode2020
 {
     internal class ChallengeRoot
     {
+        private readonly bool _verbose;
         private readonly IDictionary<string, (IChallenge Challenge, Part Part)> _challenges;
         private readonly uint _maxDays;
         private readonly uint _day;
 
-        public ChallengeRoot()
+        public ChallengeRoot(bool verbose = false)
         {
+            _verbose = verbose;
             _challenges = new Dictionary<string, (IChallenge Challenge, Part Part)>();
             _maxDays = 25;
             _day = 15;
@@ -136,6 +138,11 @@ namespace AdventOfCode2020
             else
             {
                 _challenges.Add(key, (Activator.CreateInstance<T>(), part));
+            }
+
+            if (_verbose)
+            {
+                Console.WriteLine($"Loaded {_challenges[key].Challenge.Day} / {key}, {(part == Part.Both ? "both parts" : $"{part.ToString().ToLower()} part")}...");
             }
         }
 

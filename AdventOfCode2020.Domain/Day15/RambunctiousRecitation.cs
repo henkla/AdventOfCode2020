@@ -19,17 +19,27 @@ namespace AdventOfCode2020.Domain.Day15
 
         protected override void SolveFirst()
         {
-            var history = new Dictionary<int, (int Times, int LastTurn, int EarlierTurn)>();
+            Result.First = PlayGame(2020);
+        }
+
+        protected override void SolveSecond()
+        {
+            Result.Second = PlayGame(30000000);
+        }
+
+        private long PlayGame(long turnLimit)
+        {
+            var history = new Dictionary<long, (long Times, long LastTurn, long EarlierTurn)>();
             _input.ToList().ForEach(i => history.AddOrUpdate(i, (0, 0, 0)));
 
-            var lastSpoken = 0;
-            var spoken = 0;
-            var turn = 0;
+            long lastSpoken = 0;
+            long spoken = 0;
+            long turn = 0;
 
-            while (turn < 2020)
+            while (turn < turnLimit)
             {
                 spoken = _input[turn++ % _input.Length];
-                
+
                 // considering the most recently spoken number:
                 // If that was the first time the number has been spoken, the current player says 0.
                 if (history[lastSpoken].Times == 1 && turn > _input.Length)
@@ -50,12 +60,7 @@ namespace AdventOfCode2020.Domain.Day15
                 lastSpoken = spoken;
             }
 
-            Result.First = lastSpoken;
-        }
-
-        protected override void SolveSecond()
-        {
-            throw new System.NotImplementedException();
+            return lastSpoken;
         }
     }
 }
