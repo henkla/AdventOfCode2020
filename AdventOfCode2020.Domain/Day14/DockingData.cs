@@ -38,7 +38,7 @@ namespace AdventOfCode2020.Domain.Day14
             }
 
             register.Select(kv => kv.Value).ToList().ForEach(v => Result.First += Convert.ToInt64(v, 2));
-        
+
         }
 
         private int ExtractDigitsFromString(string source)
@@ -54,7 +54,7 @@ namespace AdventOfCode2020.Domain.Day14
                 register.Add(key, value);
         }
 
-        private string ConvertIntToBinary(int source, int length) 
+        private string ConvertIntToBinary(int source, int length)
         {
             return Convert.ToString(source, 2).PadLeft(length, '0');
         }
@@ -83,7 +83,7 @@ namespace AdventOfCode2020.Domain.Day14
         {
             var result = Enumerable.Repeat('0', mask.Length).ToArray();
             var binary = ConvertIntToBinary(value, 36);
-            
+
             for (int index = binary.Length - 1; index >= 0; index--)
             {
                 // If the bitmask bit is 0, the corresponding memory address bit is unchanged
@@ -106,7 +106,7 @@ namespace AdventOfCode2020.Domain.Day14
         {
             var instruction = line.Split('=').ToArray();
             return (instruction[0].Trim(), instruction[1].Trim());
-        }   
+        }
 
         protected override void SolveSecond()
         {
@@ -129,31 +129,28 @@ namespace AdventOfCode2020.Domain.Day14
                 }
             }
 
-            register.Select(kv => kv.Value).ToList().ForEach(v => Result.Second += int.Parse(v));
+            register.Select(kv => kv.Value).ToList().ForEach(v => Result.Second += Convert.ToInt64(v));
         }
 
         private void AddToRegister2(Dictionary<string, string> register, string key, string value)
         {
-            var keys = new List<string>() { key };
-            while (keys.Any(s => s.Contains('X')))
+            var allKeys = new List<string>() { key };
+            
+            while (allKeys.Any(s => s.Contains('X')))
             {
-                var xKey = keys.First(s => s.Contains('X'));
-                foreach (var index in Enumerable.Range(0, key.Length))
-                {
-                    if (xKey[index] == 'X')
-                    {
-                        var newKey = new StringBuilder(xKey);
-                        newKey[index] = '0';
-                        keys.Add(newKey.ToString());
-                        newKey[index] = '1';
-                        keys.Add(newKey.ToString());
-                        keys.Remove(xKey);
-                        break;
-                    }
-                }
+                var floatingKey = allKeys.First(s => s.Contains('X'));
+                var expandedKey = new StringBuilder(floatingKey);
+
+                expandedKey[floatingKey.IndexOf('X')] = '0';
+                allKeys.Add(expandedKey.ToString());
+                
+                expandedKey[floatingKey.IndexOf('X')] = '1';
+                allKeys.Add(expandedKey.ToString());
+                
+                allKeys.Remove(floatingKey);
             }
 
-            foreach (var k in keys)
+            foreach (var k in allKeys)
             {
                 if (register.ContainsKey(k))
                     register[key] = value;
