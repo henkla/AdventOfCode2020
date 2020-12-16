@@ -2,7 +2,7 @@
 
 namespace AdventOfCode2020.Domain.Day16
 {
-    public class Dummy : BaseChallenge
+    public class TicketTranslation : BaseChallenge
     {
         protected override void Initialize()
         {

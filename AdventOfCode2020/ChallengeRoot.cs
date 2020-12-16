@@ -115,7 +115,7 @@ namespace AdventOfCode2020
                     AddOrUpdateChallenge<RambunctiousRecitation>(part);
                     break;
                 case 16:
-                    AddOrUpdateChallenge<Dummy>(part);
+                    AddOrUpdateChallenge<TicketTranslation>(part);
                     break;
                 case 17:
                 case 18:
@@ -158,8 +158,11 @@ namespace AdventOfCode2020
                 await challenge.Value.Challenge.RunAsync(challenge.Value.Part);
             }
 
-            Console.WriteLine($"\n{(_challenges.Count() == 1 ? "Loaded challenge" : $"All {_challenges.Count()} loaded challenges")} finished! Press any key to exit...");
-            Console.ReadKey();
+            if (_verbose)
+            {
+                Console.WriteLine($"\n{(_challenges.Count() == 1 ? "Loaded challenge" : $"All {_challenges.Count()} loaded challenges")} finished! Press any key to exit...");
+                Console.ReadKey();
+            }
         }
     }
 }
