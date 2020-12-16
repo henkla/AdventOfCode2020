@@ -11,7 +11,7 @@ namespace AdventOfCode2020.Domain.Day16
 
         protected override void Initialize()
         {
-            _input = InputReader.ReadFile("example.txt").ToArray(); ;
+            _input = InputReader.ReadFile("input.txt").ToArray();
         }
 
         protected override PartialResult SolveFirst()
@@ -19,17 +19,10 @@ namespace AdventOfCode2020.Domain.Day16
             var (Rules, MyTicket, NearbyTickets) = ParseInput(_input);
 
             var result = 0;
-            foreach (var ticket in NearbyTickets)
-            {
-                foreach (var number in ticket)
-                {
-                    foreach (var range in Rules.Values.SelectMany(r => r))
-                    {
-                        if ()
-                    }
-                    result += Rules.Values.Where(r => r.Any(range => number < range.Start.Value && number > range.End.Value)).Count();
-                }
-            }
+            NearbyTickets.SelectMany(n => n.Select(num => num))
+                         .ToList()
+                         .ForEach(n => result += Rules.Values.SelectMany(l => l.Select(r => r))
+                                                      .All(r => n < r.Start.Value || n > r.End.Value) ? n : 0);
 
             return new PartialResult(1, result, Stopwatch.Elapsed);
         }
