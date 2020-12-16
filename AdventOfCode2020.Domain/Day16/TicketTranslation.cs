@@ -37,12 +37,9 @@ namespace AdventOfCode2020.Domain.Day16
 
             // remove the invalid tickets from collection of nearby's
             NearbyTickets.SelectMany(l => l.Select(n => n))
+                .Where(n => Rules.Values.SelectMany(l => l.Select(r => r)).All(r => !InRange(n, r)))
                 .ToList()
-                .ForEach(n =>
-                {
-                    if (Rules.Values.SelectMany(l => l.Select(r => r)).All(r => !InRange(n, r)))
-                        NearbyTickets.RemoveAll(r => r.Contains(n));
-                });
+                .ForEach(n => NearbyTickets.RemoveAll(r => r.Contains(n)));
 
             // match each ticket column (number index) with each corresponding rule
             // there will be columns that matches several rules
