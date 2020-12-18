@@ -6,7 +6,7 @@ namespace AdventOfCode2020
     {
         static void Main()
         {
-            new ChallengeRoot(verbose: true)
+            new ChallengeRoot()
                 .Load(Challenge.Latest, Part.Both)
                 .RunAsync()
                 .Wait();

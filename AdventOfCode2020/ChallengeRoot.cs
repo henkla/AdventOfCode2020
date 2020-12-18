@@ -16,11 +16,11 @@ using AdventOfCode2020.Domain.Day14;
 using AdventOfCode2020.Domain.Day15;
 using AdventOfCode2020.Domain.Day16;
 using AdventOfCode2020.Domain.Day17;
+using AdventOfCode2020.Domain.Day18;
 using AdventOfCode2020.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace AdventOfCode2020
@@ -37,7 +37,7 @@ namespace AdventOfCode2020
             _verbose = verbose;
             _challenges = new Dictionary<string, (IChallenge Challenge, Part Part)>();
             _maxDays = 25;
-            _day = 17;
+            _day = 18;
         }
 
         public IEnumerable<IChallenge> GetLoadedChallenges()
@@ -119,9 +119,11 @@ namespace AdventOfCode2020
                     AddOrUpdateChallenge<TicketTranslation>(part);
                     break;
                 case 17:
-                    AddOrUpdateChallenge<DummyChallenge>(part);
+                    AddOrUpdateChallenge<ConwayCubes>(part);
                     break;
                 case 18:
+                    AddOrUpdateChallenge<OperationOrder>(part);
+                    break;
                 case 19:
                 case 20:
                 case 21:
@@ -158,7 +160,14 @@ namespace AdventOfCode2020
         {
             foreach (var challenge in _challenges.OrderBy(c => c.Value.Challenge.Day))
             {
-                await challenge.Value.Challenge.RunAsync(challenge.Value.Part);
+                try
+                {
+                    await challenge.Value.Challenge.RunAsync(challenge.Value.Part);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Ajabaja: {e.Message}");
+                }
             }
 
             if (_verbose)
